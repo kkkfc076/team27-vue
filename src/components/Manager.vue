@@ -1,10 +1,15 @@
 <template>
   <div class="manager">
     <h1>{{msg}}</h1>
-    <button @click="toLogin">回登录</button>
   </div>
 </template>
 
+<template>
+  <div class="manager">
+    <h1>{{msg}}</h1>
+    <button @click="toLogin">回登录</button>
+  </div>
+</template>
 
 <script>
 export default {

@@ -14,8 +14,8 @@ export default {
   name: 'Login',
   data: function () {
     return {
-      loginName: '',
-      password: ''
+      id: '',
+      pwd: ''
     }
   },
   methods: {
@@ -35,10 +35,10 @@ export default {
     },
     tlogin () {
       let user = {
-        tid: this.id,
+        mid: this.id,
         pwd: this.pwd
       }
-      this.$axios.post('/api/manager/tlogin', user).then(res => {
+      this.$axios.post('/api/manager/mlogin', user).then(res => {
         console.info(res.data.data)
         if (res.data.data !== null) {
           this.$router.push({name: 'Manager'})
