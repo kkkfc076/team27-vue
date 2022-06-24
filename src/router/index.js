@@ -5,6 +5,10 @@ import Login from '@/components/Login'
 import Manager from '@/components/Manager'
 import Student from '../page/student/Student'
 import Ap from '../page/student/Ap'
+import ApInfo from '../page/student/ApInfo'
+import Record from '../page/student/Record'
+import Regis from '../page/student/Regis'
+import Info from '../page/student/Info'
 
 Vue.use(Router)
 
@@ -34,6 +38,26 @@ export default new Router({
       path: '/student/ap',
       name: 'Ap',
       component: Ap
+    },
+    {
+      path: '/student/apinfo',
+      name: 'ApInfo',
+      component: ApInfo
+    },
+    {
+      path: '/student/record',
+      name: 'Record',
+      component: Record
+    },
+    {
+      path: '/student/regis',
+      name: 'Regis',
+      component: Regis
+    },
+    {
+      path: '/student/info',
+      name: 'Info',
+      component: Info
     }
   ]
 })
