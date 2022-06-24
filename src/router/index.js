@@ -5,10 +5,10 @@ import Login from '@/components/Login'
 import Manager from '@/components/Manager'
 import Student from '../page/student/Student'
 import Ap from '../page/student/Ap'
-import ApInfo from '../page/student/ApInfo'
-import Record from '../page/student/Record'
-import Regis from '../page/student/Regis'
 import Info from '../page/student/Info'
+import Regis from '../page/student/Regis'
+import Record from '../page/student/Record'
+import ApInfo from '../page/student/ApInfo'
 
 Vue.use(Router)
 
