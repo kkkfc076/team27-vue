@@ -27,7 +27,7 @@ export default {
       this.$axios.post('/api/student/login', user).then(res => {
         console.info(res.data.data)
         if (res.data.data !== null) {
-          this.$router.push({name: 'HelloWorld'})
+          this.$router.push({name: 'Student'})
         } else {
           alert('fail')
         }
