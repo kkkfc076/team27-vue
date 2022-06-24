@@ -9,6 +9,7 @@ import Info from '../page/student/Info'
 import Regis from '../page/student/Regis'
 import Record from '../page/student/Record'
 import ApInfo from '../page/student/ApInfo'
+import WaitFor from '../page/manager/WaitFor'
 
 Vue.use(Router)
 
@@ -58,6 +59,12 @@ export default new Router({
       path: '/student/info',
       name: 'Info',
       component: Info
+    },
+    {
+      path: '/manager/waitfor',
+      name: 'Waitfor',
+      component: () =>
+      import('../page/manager/WaitFor')
     }
   ]
 })
