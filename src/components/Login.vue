@@ -1,11 +1,11 @@
 <template>
 <div>
-  这是登录界面
-  用户名<input type="text" v-model="sid"><br>
+  <header>登录</header>
+  用户名<input type="text" v-model="id"><br>
   密码<input type="text" v-model="pwd"><br>
   <button @click="login">学生登录</button>
-  <button @click="toHello">回hello</button>
-  <button @click="getById">根据id查询</button>
+  <button @click="tlogin">管理员登录</button>
+
 </div>
 </template>
 
@@ -19,12 +19,9 @@ export default {
     }
   },
   methods: {
-    toHello () {
-      this.$router.push('/hello')
-    },
     login () {
       let user = {
-        sid: this.sid,
+        sid: this.id,
         pwd: this.pwd
       }
       this.$axios.post('/api/student/login', user).then(res => {
@@ -36,9 +33,18 @@ export default {
         }
       })
     },
-    getById () {
-      this.$axios.get('/api/book/getById1', {params: {id: 1}}).then(res => {
-        console.info(res)
+    tlogin () {
+      let user = {
+        tid: this.id,
+        pwd: this.pwd
+      }
+      this.$axios.post('/api/manager/tlogin', user).then(res => {
+        console.info(res.data.data)
+        if (res.data.data !== null) {
+          this.$router.push({name: 'Manager'})
+        } else {
+          alert('fail')
+        }
       })
     }
   }
