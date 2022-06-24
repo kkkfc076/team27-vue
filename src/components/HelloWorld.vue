@@ -86,11 +86,7 @@
 <template>
   <div class="hello">
     <h1>{{msg}}</h1>
-    <button @click="toLogin">去login</button>
-    用户名<input type="text" v-model="loginName"><br>
-    密码<input type="text" v-model="password"><br>
-    <button @click="login">登录</button>
-    <button v-on:click="window">弹窗</button>
+    <button @click="toLogin">回登录</button>
   </div>
 </template>
 
@@ -99,22 +95,12 @@ export default {
   name: 'HelloWorld',
   data: function () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: '学生成功登进来了',
       loginName: '',
       password: ''
     }
   },
   methods: {
-    login () {
-      let user = {
-        loginName: this.loginName,
-        password: this.password
-      }
-      this.$axios.post('/api/admin/login', user)
-    },
-    window () {
-      alert('这是一个弹窗')
-    },
     toLogin () {
       this.$router.push({path: '/'})
     }
