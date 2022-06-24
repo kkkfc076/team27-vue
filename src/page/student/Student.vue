@@ -1,4 +1,5 @@
 <template>
+  <div>
   <el-col :span="3">
     <h5>主菜单</h5>
     <el-menu
@@ -32,10 +33,11 @@
       </el-menu-item>
     </el-menu>
   </el-col>
-
+  </div>
 </template>
 
 <script>
+
 export default {
   name: 'Student',
   data: function () {
@@ -51,23 +53,24 @@ export default {
       console.log(key, keyPath)
     },
     ap () {
-      this.$router.push({path: '/student/ap'})
-    },
-    apinfo () {
-      this.$router.push({path: '/student/apinfo'})
+      this.$router.push({name: 'Ap'})
     },
     regis () {
-      this.$router.push({path: '/student/regis'})
-    },
-    record () {
-      this.$router.push({path: '/student/record'})
+      this.$router.push({name: 'Regis'})
     },
     info () {
-      this.$router.push({path: '/student/info'})
+      this.$router.push({name: 'Info'})
+    },
+    record () {
+      this.$router.push({name: 'Record'})
+    },
+    apinfo () {
+      this.$router.push({name: 'ApInfo'})
     },
     exit () {
-      this.$router.push({path: '/'})
+      this.$router.push({name: 'Login'})
     }
+
   }
 }
 </script>
