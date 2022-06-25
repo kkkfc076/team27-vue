@@ -1,18 +1,15 @@
 // 查看个人信息界面
 <template>
-  <div>
-    <el-descriptions title="个人信息" direction="vertical" :column="8" border>
-      <el-descriptions-item label="学号">kooriookami</el-descriptions-item>
-      <el-descriptions-item label="姓名">18100000000</el-descriptions-item>
-      <el-descriptions-item label="贫困等级" :span="2">苏州市</el-descriptions-item>
-      <el-descriptions-item label="贫困认定学年" :span="2">苏州市</el-descriptions-item>
-      <el-descriptions-item label="学院">学校</el-descriptions-item>
-      <el-descriptions-item label="年级" :span="2">苏州市</el-descriptions-item>
-      <el-descriptions-item label="班级" :span="2">苏州市</el-descriptions-item>
-      <el-descriptions-item label="性别" :span="2">苏州市</el-descriptions-item>
-      <el-descriptions-item label="联系地址">江苏省苏州市吴中区吴中大道 1188 号</el-descriptions-item>
-    </el-descriptions>
-  </div>
+  <el-descriptions title="个人信息" direction="vertical" :column="4" border>
+    <el-descriptions-item label="学号">{{info.sid}}</el-descriptions-item>
+    <el-descriptions-item label="姓名">{{info.sname}}</el-descriptions-item>
+    <el-descriptions-item label="性别" >{{info.sex}}</el-descriptions-item>
+    <el-descriptions-item label="学院">{{info.major}}</el-descriptions-item>
+    <el-descriptions-item label="年级"> {{info.grade}}</el-descriptions-item>
+    <el-descriptions-item label="班级">{{info.sclass}}</el-descriptions-item>
+    <el-descriptions-item label="贫困等级">{{info.pleve}}</el-descriptions-item>
+    <el-descriptions-item label="贫困认定学年">{{info.pyear}}</el-descriptions-item>
+  </el-descriptions>
 
 </template>
 
@@ -20,11 +17,25 @@
 export default {
   name: 'Info',
   data () {
+    return {
+      info: []
+    }
   },
-  methods: {
-  }
 
+  created () {
+    this.getInfo()
+  },
+
+  methods: {
+    getInfo () {
+      this.$axios.get('/api/student/getInfo').then(res => {
+        console.info(res)
+        this.info = res.data.data
+      })
+    }
+  }
 }
+
 </script>
 
 <style scoped>

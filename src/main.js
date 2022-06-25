@@ -8,6 +8,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // eslint-disable-next-line import/no-duplicates
 import Element from 'element-ui'
+
 Vue.use(Element, { size: 'small', zIndex: 3000 })
 
 var axios = require('axios')
