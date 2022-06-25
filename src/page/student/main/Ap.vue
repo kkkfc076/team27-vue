@@ -1,68 +1,50 @@
 // 学生资格申请页面
 <template>
-  <div class="el-main" >
-  <el-page-header @back="goBack" content="详情页面">
-  </el-page-header>
-  <el-form ref="form" :model="form"  >
-    <h1>填写申请表页面</h1>
-    <el-form-item label="姓名">
-      <el-input v-model="form.name"></el-input>
-    </el-form-item>
-    <el-form-item label="姓别">
-      <el-input v-model="form.sex"></el-input>
-    </el-form-item>
-      <el-form-item label="学号">
-        <el-input v-model="form.num"></el-input>
-      </el-form-item>
-    <el-form-item label="困难等级">
-      <el-checkbox-group v-model="form.type">
-        <el-checkbox label="1" name="type"></el-checkbox>
-        <el-checkbox label="1" name="type"></el-checkbox>
-        <el-checkbox label="1" name="type"></el-checkbox>
-      </el-checkbox-group>
-    </el-form-item>
-    <el-form-item label="申请理由">
-      <el-input type="textarea" v-model="form.desc"></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="onSubmit" >提交申请</el-button>
-      <el-button>取消</el-button>
-    </el-form-item>
-  </el-form>
-
-  </div>
+ <div>
+     <h1>填写申请表页面</h1>
+   姓名:{{userList.sname}}<br>
+   学号:{{userList.sid}}<br>
+   性别:{{userList.sex}}<br>
+   贫困等级:{{userList.plevel}}<br>
+   批次:{{userList.pyear}}<br>
+   <el-form ref="form" :model="form" label-width="10000xp">
+     <el-form-item label="申请理由">
+       <el-input type="textarea" v-model="form.reason"></el-input>
+     </el-form-item>
+     <el-form-item>
+       <el-button type="primary" >提交申请</el-button>
+       <el-button>取消</el-button>
+     </el-form-item>
+   </el-form>
+ </div>
 </template>
 
 <script>
 export default {
   name: 'Ap',
+
   data () {
     return {
+      userList: [],
       form: {
-        name: '',
-        sex: '',
-        num: '',
-        type: [],
-        desc: ''
+        reason: ''
       }
     }
   },
+  created () {
+    this.getInfo()
+  },
   methods: {
-    onSubmit () {
-      console.log('submit!')
-    },
-    goBack () {
-      console.log('go back')
+    getInfo () {
+      this.$axios.get(`/api/student/getInfo`).then(res => {
+        console.info(res.data)
+        this.userList = res.data.data
+      })
     }
   }
 }
 </script>
 
 <style scoped>
-  .el-main {
-    padding: 0;
-    height: calc(100vh - 70px);
-    margin-left: 300px;
-    margin-right: 300px;
-  }
+
 </style>
