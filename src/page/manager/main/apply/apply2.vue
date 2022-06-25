@@ -1,4 +1,5 @@
 <template>
+  <el-card>
   <el-table
     :data="waits"
     border
@@ -11,13 +12,13 @@
     >
     </el-table-column>
     <el-table-column
-      prop="man_key"
+      prop="manKey"
       label="审核人编号"
       width="100"
     >
     </el-table-column>
     <el-table-column
-      prop="app_key"
+      prop="appKey"
       label="申请编号"
       width="100"
     >
@@ -40,7 +41,7 @@
     >
     </el-table-column>
     <el-table-column
-      fixed="state"
+      prop="state"
       label="审核状态"
       width="100"
     >
@@ -50,6 +51,17 @@
       </template>
     </el-table-column>
   </el-table>
+    <el-pagination
+      background
+      @size-change="pageSizeChange"
+      @current-change="pageNoChange"
+      :current-page="query.pageNo"
+      :page-sizes="[10,20,50]"
+      :page-size="query.pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="query.total">
+    </el-pagination>
+  </el-card>
 </template>
 
 <script>
@@ -60,7 +72,12 @@ export default {
   name: 'apply2',
   data () {
     return {
-      waits: []
+      waits: [],
+      query: {
+        pageNo: 1,
+        pageSize: 10,
+        total: 0
+      }
     }
   },
   created () {
@@ -71,10 +88,21 @@ export default {
       console.log(row)
     },
     aplly () {
-      waitForList({}).then(res => {
+      waitForList(this.query).then(res => {
         console.info(res)
         this.waits = res.data.records
+        this.query.total = res.data.total
       })
+    },
+    pageSizeChange (value) {
+      this.query.pageSize = value
+      this.aplly()
+      console.info(value)
+    },
+    pageNoChange (value) {
+      this.query.pageNo = value
+      this.aplly()
+      console.info(value)
     }
   }
 }
