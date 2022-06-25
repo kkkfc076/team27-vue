@@ -63,7 +63,7 @@ export default {
     appList () {
       waitForList({}).then(res => {
         console.info(res)
-        this.waits=res.data.records
+        this.waits = res.data.records
       })
     }
   }
