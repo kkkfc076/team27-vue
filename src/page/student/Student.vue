@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <router-view/>
-  <el-col :span="3" >
+  <div class="el-aside">
+  <el-container>
+  <el-aside :span="3" >
     <h5>主菜单</h5>
     <el-menu
       default-active="2"
@@ -37,7 +37,11 @@
         <span slot="title">退出登录</span>
       </el-menu-item>
     </el-menu>
-  </el-col>
+  </el-aside>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
+  </el-container>
     <!-- 修改密码弹出框 -->
     <el-dialog title="修改密码" :visible.sync="dialogFormVisible">
       <el-form :model="form" ref="pwdForm" :rules="rules">
@@ -132,3 +136,10 @@ export default {
   }
 }
 </script>
+<style>
+  .el-aside {
+    height: calc(100vh - 70px);
+    overflow: hidden;
+  }
+
+</style>
