@@ -58,12 +58,6 @@ export default new Router({
       path: '/student/info',
       name: 'Info',
       component: Info
-    },
-    {
-      path: '/manager/waitfor',
-      name: 'Waitfor',
-      component: () =>
-      import('../page/manager/WaitFor')
     }
   ]
 })
