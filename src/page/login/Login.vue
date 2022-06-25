@@ -5,7 +5,6 @@
   密码<input type="text" v-model="pwd"><br>
   <button @click="login">学生登录</button>
   <button @click="tlogin">管理员登录</button>
-  <button @click="toprint">打印出来</button>
 
 </div>
 </template>
@@ -42,7 +41,7 @@ export default {
       this.$axios.post('/api/manager/mlogin', user).then(res => {
         console.info(res.data.data)
         if (res.data.data !== null) {
-          this.$router.push({name: 'Manager'})
+          this.$router.push({name: 'Managemain'})
         } else {
           alert('fail')
         }
