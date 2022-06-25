@@ -1,6 +1,8 @@
 // 学生资格申请页面
 <template>
   <div class="el-main" >
+  <el-page-header @back="goBack" content="详情页面">
+  </el-page-header>
   <el-form ref="form" :model="form"  >
     <h1>填写申请表页面</h1>
     <el-form-item label="姓名">
@@ -48,6 +50,9 @@ export default {
   methods: {
     onSubmit () {
       console.log('submit!')
+    },
+    goBack () {
+      console.log('go back')
     }
   }
 }
