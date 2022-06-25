@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Student from '../page/student/Student'
-import Ap from '../page/student/main/Ap'
-import Info from '../page/student/main/Info'
-import Regis from '../page/student/main/Regis'
-import Record from '../page/student/main/Record'
-import ApInfo from '../page/student/main/ApInfo'
-import Managemain from '../page/manager/Managemain'
-import apply1 from '../page/manager/main/apply/apply1'
-import apply2 from '../page/manager/main/apply/apply2'
-import apply3 from '../page/manager/main/apply/apply3'
+// import Student from '../page/student/Student'
+// import Ap from '../page/student/main/Ap'
+// import Info from '../page/student/main/Info'
+// import Regis from '../page/student/main/Regis'
+// import Record from '../page/student/main/Record'
+// import ApInfo from '../page/student/main/ApInfo'
+// import Managemain from '../page/manager/Managemain'
+// import apply1 from '../page/manager/main/apply/apply1'
+// import apply2 from '../page/manager/main/apply/apply2'
+// import apply3 from '../page/manager/main/apply/apply3'
 import routes from './routes'
+Vue.$httpRequestList = []
 Vue.use(Router)
 
 let router = new Router({

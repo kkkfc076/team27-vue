@@ -103,11 +103,5 @@ export default {
 </script>
 
 <style scoped>
-.el-aside {
-  height: calc(100vh - 70px);
-}
-.el-main {
-  padding: 0;
-  height: calc(100vh - 70px);
-}
+
 </style>

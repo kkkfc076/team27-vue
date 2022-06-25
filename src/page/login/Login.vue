@@ -5,7 +5,6 @@
   密码<input type="text" v-model="pwd"><br>
   <button @click="login">学生登录</button>
   <button @click="tlogin">管理员登录</button>
-
 </div>
 </template>
 
@@ -46,10 +45,8 @@ export default {
           alert('fail')
         }
       })
-    },
-    toprint () {
-      this.$router.push({name: 'Waitfor'})
     }
+
   }
 }
 </script>
