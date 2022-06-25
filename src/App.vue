@@ -26,4 +26,5 @@ html,body,#app {
   padding: 0;
   height: calc(100vh - 70px);
 }
+
 </style>

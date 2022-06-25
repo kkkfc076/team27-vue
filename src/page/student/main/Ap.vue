@@ -1,6 +1,7 @@
 // 学生资格申请页面
 <template>
-  <el-form ref="form" :model="form" label-width="800px">
+  <div class="el-main" >
+  <el-form ref="form" :model="form"  >
     <h1>填写申请表页面</h1>
     <el-form-item label="姓名">
       <el-input v-model="form.name"></el-input>
@@ -22,10 +23,12 @@
       <el-input type="textarea" v-model="form.desc"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">提交申请</el-button>
+      <el-button type="primary" @click="onSubmit" >提交申请</el-button>
       <el-button>取消</el-button>
     </el-form-item>
   </el-form>
+
+  </div>
 </template>
 
 <script>
@@ -51,5 +54,10 @@ export default {
 </script>
 
 <style scoped>
-
+  .el-main {
+    padding: 0;
+    height: calc(100vh - 70px);
+    margin-left: 300px;
+    margin-right: 300px;
+  }
 </style>
