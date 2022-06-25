@@ -4,11 +4,11 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Manager from '@/components/Manager'
 import Student from '../page/student/Student'
-import Ap from '../page/student/Ap'
-import Info from '../page/student/Info'
-import Regis from '../page/student/Regis'
-import Record from '../page/student/Record'
-import ApInfo from '../page/student/ApInfo'
+import Ap from '../page/student/main/Ap'
+import Info from '../page/student/main/Info'
+import Regis from '../page/student/main/Regis'
+import Record from '../page/student/main/Record'
+import ApInfo from '../page/student/main/ApInfo'
 
 Vue.use(Router)
 
@@ -30,7 +30,7 @@ export default new Router({
       component: Manager
     },
     {
-      path: '/student',
+      path: '/stuent',
       name: 'Student',
       component: Student
     },

@@ -1,10 +1,11 @@
+// 选择寒衣的款式以及尺码
 <template>
-  <h1>查看个人信息页面</h1>
+  <h1>选择寒衣界面</h1>
 </template>
 
 <script>
 export default {
-  name: 'Info'
+  name: 'Regis'
 }
 </script>
 

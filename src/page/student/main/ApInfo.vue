@@ -1,10 +1,11 @@
+// 查看申请信息及结果
 <template>
-  <h1>查看记录界面</h1>
+  <h1>查看申请结果页面</h1>
 </template>
 
 <script>
 export default {
-  name: 'Record'
+  name: 'ApInfo'
 }
 </script>
 

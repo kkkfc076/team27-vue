@@ -1,6 +1,6 @@
 // 学生资格申请页面
 <template>
-  <el-form ref="form" :model="form" label-width="80px">
+  <el-form ref="form" :model="form" label-width="800px">
     <h1>填写申请表页面</h1>
     <el-form-item label="姓名">
       <el-input v-model="form.name"></el-input>

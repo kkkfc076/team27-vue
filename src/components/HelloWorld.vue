@@ -1,127 +1,67 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
-  </div>
-</template>
-
-<template>
-  <div class="hello">
-    <h1>{{msg}}</h1>
-    <button @click="toLogin">回登录</button>
-  </div>
+  <el-form ref="form" :model="user" :rules="rules" label-width="80px">
+    <el-form-item label="旧密码" prop="oldPassword">
+      <el-input v-model="user.oldPassword" placeholder="请输入旧密码" type="password" />
+    </el-form-item>
+    <el-form-item label="新密码" prop="newPassword">
+      <el-input v-model="user.newPassword" placeholder="请输入新密码" type="password" />
+    </el-form-item>
+    <el-form-item label="确认密码" prop="confirmPassword">
+      <el-input v-model="user.confirmPassword" placeholder="请确认密码" type="password" />
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" size="mini" @click="submit">保存</el-button>
+      <el-button type="danger" size="mini" @click="close">关闭</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
+
 export default {
-  name: 'HelloWorld',
   data: function () {
+    const equalToPassword = (rule, value, callback) => {
+      if (this.user.newPassword !== value) {
+        callback(new Error('两次输入的密码不一致'))
+      } else {
+        callback()
+      }
+    }
     return {
-      msg: '学生成功登进来了',
-      loginName: '',
-      password: ''
+      test: '1test',
+      oldPassword: '',
+      newPassword: '',
+      rules: {
+        oldPassword: [
+          {required: true, message: '旧密码不能为空', trigger: 'blur'}
+        ],
+        newPassword: [
+          {required: true, message: '新密码不能为空', trigger: 'blur'},
+          {min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur'}
+        ],
+        confirmPassword: [
+          {required: true, message: '确认密码不能为空', trigger: 'blur'},
+          {required: true, validator: equalToPassword, trigger: 'blur'}
+        ]
+      },
+      // 表单校验
+      confirmPassword: undefined
     }
   },
   methods: {
-    toLogin () {
-      this.$router.push({path: '/'})
+    submit () {
+      this.$axios.post('/api/student/login', this.oldPassword, this.newPassword).then(res => {
+        console.info(res.data.data)
+        if (res.data.data !== null) {
+          this.msgSuccess('修改成功')
+        }
+      }
+      )
+    },
+    close () {
+      this.$store.dispatch('tagsView/delView', this.$route)
+      this.$router.push({path: '/task/tasks'})
     }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

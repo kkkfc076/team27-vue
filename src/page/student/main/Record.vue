@@ -1,10 +1,11 @@
+//查看历史批次记录
 <template>
-  <h1>选择寒衣界面</h1>
+  <h1>查看记录界面</h1>
 </template>
 
 <script>
 export default {
-  name: 'Regis'
+  name: 'Record'
 }
 </script>
 
