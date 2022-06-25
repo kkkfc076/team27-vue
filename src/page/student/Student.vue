@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-view/>
   <el-col :span="3" >
     <h5>主菜单</h5>
     <el-menu
