@@ -17,8 +17,7 @@ html,body,#app {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-  height: 100%;
+  margin-top: 10px;
 }
 .el-aside {
   height: calc(100vh - 70px);
