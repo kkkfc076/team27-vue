@@ -35,9 +35,9 @@
               <el-menu-item index="3-2" @click="style2()">款式添加</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="4" @click="personalInfo()">
+          <el-menu-item index="4" @click="whitelist()">
             <i class="el-icon-document"></i>
-            <span>个人信息</span>
+            <span>白名单设置</span>
           </el-menu-item>
           <el-menu-item index="5" @click="dialogFormVisible=true">
             <i class="el-icon-document"></i>
@@ -125,8 +125,8 @@ export default {
     style2 () {
       this.$router.push({name: 'style2'})
     },
-    personalInfo () {
-      this.$router.push({name: 'personalInfo'})
+    whitelist () {
+      this.$router.push({name: 'whitelist'})
     },
     back () {
       this.$router.push({name: 'Login'})

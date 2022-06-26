@@ -62,11 +62,11 @@ const managerPage = [
           )
       },
       {
-        path: '/personalInfo',
-        name: 'personalInfo',
+        path: '/whitelist',
+        name: 'whitelist',
         component: () =>
           import(
-            '../page/manager/main/personalInfo'
+            '../page/manager/main/whitelist'
           )
       }
     ]
