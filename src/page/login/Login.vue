@@ -1,55 +1,88 @@
 <template>
-<div>
-  <header>登录</header>
-  用户名<input type="text" v-model="id"><br>
-  密码<input type="text" v-model="pwd"><br>
-  <button @click="login">学生登录</button>
-  <button @click="tlogin">管理员登录</button>
-</div>
+  <div>
+    <el-row :gutter="15">
+      <el-form ref="elForm" :model="formData" :rules="rules" size="medium" label-width="100px" label-position="top">
+        <el-col :span="12" :offset="6">
+          <el-form-item label="用户名" prop="id">
+            <el-input v-model="formData.id" placeholder="请输入用户名" clearable :style="{width: '100%'}">
+            </el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12" :offset="6">
+          <el-form-item label="密码" prop="pwd">
+            <el-input v-model="formData.pwd" placeholder="请输入密码" clearable show-password
+                      :style="{width: '100%'}"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12" >
+          <el-form-item label="" prop="field104">
+            <el-button type="primary" icon="el-icon-search" size="medium" @click="login()"> 学生登录 </el-button>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12" >
+          <el-form-item label="" prop="field105">
+            <el-button type="primary" icon="el-icon-search" size="medium" @click="tlogin()"> 管理员登录 </el-button>
+          </el-form-item>
+        </el-col>
+      </el-form>
+    </el-row>
+  </div>
 </template>
 
 <script>
+import {login, tlogin} from '../../api/login'
 export default {
   name: 'Login',
-  data: function () {
+  data () {
     return {
-      id: '',
-      pwd: ''
+      formData: {
+        id: '',
+        pwd: ''
+      },
+      rules: {
+        id: [{
+          required: true,
+          message: '请输入用户名',
+          trigger: 'blur'
+        }],
+        pwd: [{
+          required: true,
+          message: '请输入密码',
+          trigger: 'blur'
+        }]
+      }
     }
   },
   methods: {
     login () {
-      let user = {
-        sid: this.id,
-        pwd: this.pwd
+      let student = {
+        sid: this.formData.id,
+        pwd: this.formData.pwd
       }
-      this.$axios.post('/api/student/login', user).then(res => {
-        console.info(res.data.data)
-        if (res.data.data !== null) {
-          this.$router.push({name: 'Student', params: {}})
+      login(student).then(res => {
+        if (res.data) {
+          this.$router.push({name: 'Student'})
         } else {
-          alert('fail')
+          this.$message.error('用户名或密码错误')
         }
       })
     },
     tlogin () {
-      let user = {
-        mid: this.id,
-        pwd: this.pwd
+      let manager = {
+        mid: this.formData.id,
+        pwd: this.formData.pwd
       }
-      this.$axios.post('/api/manager/mlogin', user).then(res => {
-        console.info(res.data.data)
-        if (res.data.data !== null) {
-          this.$router.push({name: 'Managemain'})
-          // localStorage.setItem('data', JSON.stringify(res.data.data))
-        } else {
-          alert('fail')
+      tlogin(manager).then(res => {
+        if (res.data) {
+          if (res.data.permission) {
+            this.$router.push({name: 'Managemain'})
+          }
         }
       })
     }
-
   }
 }
+
 </script>
 
 <style scoped>
