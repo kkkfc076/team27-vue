@@ -15,7 +15,7 @@
             </template>
             <el-menu-item-group>
               <template slot="title"></template>
-              <el-menu-item index="1-1" @click="aplly1()">申请总览</el-menu-item>
+              <el-menu-item index="1-1" @click="aplly1()">批量审核</el-menu-item>
               <el-menu-item index="1-2" @click="aplly2()">待我审核</el-menu-item>
               <el-menu-item index="1-3" @click="aplly3()">审核历史</el-menu-item>
             </el-menu-item-group>

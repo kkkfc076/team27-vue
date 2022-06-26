@@ -14,7 +14,7 @@ Vue.use(Element, { size: 'small', zIndex: 3000 })
 var axios = require('axios')
 
 Vue.prototype.$axios = axios
-
+axios.defaults.withCredentials = true
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)

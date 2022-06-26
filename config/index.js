@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'http://localhost:8082',// 要代理的域名
-        changeOrigin: true,// 允许跨域
+        changeOrigin: true,// 允许跨域npm -g install npm
         pathRewrite: {
           '^/api': '/api'   // 这种接口配置出来     http://localhost:8443/api/login
           // '^/api': '/' 这种接口配置出来     http://localhost:8443/login

@@ -11,6 +11,8 @@
     </el-card>
     <el-card class="container">
       <el-table
+        highlight-current-row
+        @current-change="choose"
         :data="info"
         border
         style="width: 100%">
@@ -38,15 +40,12 @@
           prop="size"
           label="尺码">
         </el-table-column>
-        <el-table-column
-          label="操作">
-          <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-            <el-button type="text" size="small">编辑</el-button>
-          </template>
-        </el-table-column>
       </el-table>
     </el-card>
+    <h2></h2>
+    <el-row>
+      <el-button type="primary" plain @click="confirm">确认选择</el-button>
+    </el-row>
   </div>
 </template>
 
@@ -54,17 +53,36 @@
 export default {
   data () {
     return {
-      info: []
+      info: [],
+      data: ''
     }
   },
   created () {
     this.getInfo()
   },
   methods: {
-    getInfo () {
+    getInfo() {
       this.$axios.get('/api/clothes/styles').then(res => {
         console.info(res)
         this.info = res.data.data.records
+      })
+    },
+    choose(value) {
+      console.info(value)
+      this.data = value
+    },
+    confirm() {
+      this.$axios.post('/api/applicationform/choose', this.data).then(res => {
+        console.info(res)
+        if (res.data.data.flag === 2) {
+          this.$alert('选择寒衣成功', '选择结果', {
+            confirmButtonText: '确定'
+          })
+        } else {
+          this.$alert('选择寒衣失败', '选择结果', {
+            confirmButtonText: '确定'
+          })
+        }
       })
     }
   }
