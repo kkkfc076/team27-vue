@@ -96,10 +96,10 @@ export default {
     handleSelectionChange (selectedNo) {
       console.info(selectedNo)
       let ids = []
-      for(let i =0;i<selectedNo.length;i++){
+      for (let i = 0; i < selectedNo.length; i++) {
         ids.push(selectedNo[i].id)
       }
-      this.ids=ids
+      this.ids = ids
       // this.ids = selectedNo.map(manager_application => manager_application.id)
     },
     aplly () {
