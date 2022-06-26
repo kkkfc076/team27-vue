@@ -1,5 +1,7 @@
+<!--这是待我审核界面-->
 <template>
   <el-card>
+    <h1>本学院待审核学生申请</h1>
   <el-table
     :data="waits"
     border
@@ -13,7 +15,7 @@
     </el-table-column>
     <el-table-column
       prop="manKey"
-      label="审核人编号"
+      label="审核人账户"
       width="100"
     >
     </el-table-column>
@@ -36,7 +38,7 @@
     </el-table-column>
     <el-table-column
       prop="result"
-      label="申请结果"
+      label="提交状态"
       width="100"
     >
     </el-table-column>
@@ -84,9 +86,9 @@ export default {
     this.aplly()
   },
   methods: {
-    handleClick (row) {
-      console.log(row)
-    },
+    handleClick () {
+      this.$router.push({name: 'submitting'})
+    }, // console.log(row)
     aplly () {
       waitForList(this.query).then(res => {
         console.info(res)

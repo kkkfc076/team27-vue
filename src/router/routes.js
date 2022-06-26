@@ -38,6 +38,14 @@ const managerPage = [
           )
       },
       {
+        path: '/apply/apply2page/submitting',
+        name: 'submitting',
+        component: () =>
+          import(
+            '../page/manager/main/apply/apply2page/submitting'
+          )
+      },
+      {
         path: '/batchset',
         name: 'batchset',
         component: () =>

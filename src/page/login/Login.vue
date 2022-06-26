@@ -41,6 +41,7 @@ export default {
         console.info(res.data.data)
         if (res.data.data !== null) {
           this.$router.push({name: 'Managemain'})
+          // localStorage.setItem('data', JSON.stringify(res.data.data))
         } else {
           alert('fail')
         }
