@@ -2,33 +2,46 @@
 <template>
  <div>
      <h1>填写申请表页面</h1>
-   姓名:{{userList.sname}}<br>
-   学号:{{userList.sid}}<br>
-   性别:{{userList.sex}}<br>
-   贫困等级:{{userList.plevel}}<br>
-   批次:{{userList.pyear}}<br>
-   <el-form ref="form" :model="form" label-width="10000xp">
-     <el-form-item label="申请理由" prop="reason">
-       <el-input type="textarea" v-model="form.reason"></el-input>
-     </el-form-item>
-     <el-form-item>
-       <el-button type="primary" @click="submit()" >提交申请</el-button>
-       <el-button>取消</el-button>
-     </el-form-item>
-   </el-form>
+   <table width="1000" border="1" align="center">
+     <tr>
+       <th scope="row">姓名</th>
+       <td>{{userList.sname}}</td>
+     </tr>
+     <tr>
+       <th scope="row">学号</th>
+       <td> {{userList.sid}}<br></td>
+     </tr>
+     <tr>
+       <th scope="row">性别</th>
+       <td>{{userList.sex}}</td>
+     </tr>
+     <tr>
+       <th scope="row">贫困等级</th>
+       <td>{{userList.plevel}}</td>
+     </tr>
+     <tr>
+       <th scope="row">贫困认定时间</th>
+       <td>{{userList.pyear}}</td>
+     </tr>
+     <tr>
+     <th scope="row">申请原因</th>
+     <td><el-input type="text" v-model="reason"></el-input></td>
+   </tr>
+   </table>
+   <br>
+       <button type="primary" @click="addReason" >提交申请(首次提交）</button>
+       <button type="primary" @click="updateReason" >修改申请（提交过）</button>
+       <button>取消</button>
  </div>
 </template>
 
 <script>
 export default {
   name: 'Ap',
-
   data () {
     return {
       userList: [],
-      form: {
-        reason: ''
-      }
+      reason: ''
     }
   },
   created () {
@@ -41,16 +54,22 @@ export default {
         this.userList = res.data.data
       })
     },
-    submit () {
-      var reason = this.form.reason
-      this.$axios.post('/api/applicationform/addReason', {reason}).then(res => {
+    updateReason () {
+      var reason = {reason: this.reason}
+      this.$axios.post(`/api/applicationform/updateReason`, reason).then(res => {
         console.assert(res.data.data)
         if (res.data.data.flag === 2) {
-          alert('提交成功!')
+          alert('成功')
         } else {
-          alert(' 错误！')
+          alert('失败')
           return false
         }
+      })
+    },
+    addReason () {
+      var reason = this.reason
+      this.$axios.post(`/api/applicationform/addReason`, reason).then(res => {
+        console.info(res.data.data)
       })
     }
   }
