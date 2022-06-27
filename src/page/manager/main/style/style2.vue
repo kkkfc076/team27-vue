@@ -1,22 +1,23 @@
 <template>
   <div>
     <el-row :gutter="15">
-      <el-form ref="elForm" :model="formData" :rules="rules" size="medium" label-width="100px">
+      <el-form ref="formData" :model="formData" :rules="rules" size="medium"  label-width="100px" >
         <el-col :span="12" :offset="6">
           <el-form-item label="款式名称" prop="cname">
-            <el-input v-model="formData.cname" placeholder="请输入款式名称" clearable :style="{width: '100%'}">
+            <el-input v-model="formData.cname" placeholder="请输入款式名称" clearable :style="{width: '100%'}"
+                      required="required">
             </el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12" :offset="6">
           <el-form-item label="推荐尺码" prop="size">
-            <el-input v-model="formData.size" placeholder="请输入推荐尺码" clearable :style="{width: '100%'}">
+            <el-input v-model="formData.size" placeholder="请输入推荐尺码" clearable :style="{width: '100%'}" required="required">
             </el-input>
           </el-form-item>
         </el-col>
         <el-col :span="12" :offset="6">
           <el-form-item label="款式编号" prop="style">
-            <el-input v-model="formData.style" placeholder="请输入款式编号" clearable :style="{width: '100%'}">
+            <el-input v-model="formData.style" placeholder="请输入款式编号" clearable :style="{width: '100%'}" required="required">
             </el-input>
           </el-form-item>
         </el-col>
@@ -43,7 +44,7 @@
         </el-col>
         <el-col :span="12" :offset="6">
           <el-form-item size="large">
-            <el-button type="primary" @click="submitForm()">提交</el-button>
+            <el-button type="primary" @click="submitForm('formData')">提交</el-button>
             <el-button @click="resetForm">重置</el-button>
           </el-form-item>
         </el-col>
@@ -122,20 +123,23 @@ export default {
       return isJPG && isLt2M
     },
     resetForm () {
-      this.$refs['elForm'].resetFields()
+      this.$refs['formData'].resetFields()
     },
-    submitForm () {
-      if (this.formData !== null) {
-        addClothes(this.formData).then(res => {
-          this.$message({
-            message: '提交成功',
-            type: 'success'
+    submitForm (formData) {
+      this.$refs[formData].validate((valid) => {
+        if (valid) {
+          addClothes(this.formData).then(res => {
+            this.$message({
+              message: '提交成功',
+              type: 'success'
+            })
+            console.info(res)
           })
-          console.info(res)
-        })
-      } else {
-        this.$message.error('输入不能为空')
-      }
+        } else {
+          this.$message.error('输入不能为空！')
+          return false
+        }
+      })
     }
   }
 }

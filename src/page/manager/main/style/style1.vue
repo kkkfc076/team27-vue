@@ -34,6 +34,9 @@
         <el-table-column
           prop="picture"
           label="图片">
+          <template slot-scope="scope">
+            <img width="100%" :src="scope.row.picture" alt="">
+          </template>
         </el-table-column>
         <el-table-column
           prop="batKey"
