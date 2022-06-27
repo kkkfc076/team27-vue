@@ -55,9 +55,9 @@ export default {
       })
     },
     updateReason () {
-      var reason = {reason: this.reason}
-      this.$axios.post(`/api/applicationform/updateReason`, reason).then(res => {
-        console.assert(res.data.data)
+      var reason = this.reason
+      this.$axios.post(`/api/applicationform/updateReason`, {reason}).then(res => {
+        console.info(res.data)
         if (res.data.data.flag === 2) {
           alert('成功')
         } else {
