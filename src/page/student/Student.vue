@@ -1,6 +1,21 @@
 <template>
   <div class="el-aside">
+    <tr>
+      <th scope="row">当前批次为：</th>
+      <td>{{batch}}</td>
+    </tr>
   <el-container>
+<!--    <el-header style="text-align: left; font-size: 20px" class="el-header">-->
+<!--      <el-dropdown>-->
+<!--        <i class="el-icon-s-custom" style="margin-right: 15px"></i>-->
+<!--        <el-dropdown-menu slot="dropdown">-->
+<!--          <el-dropdown-item>查看</el-dropdown-item>-->
+<!--          <el-dropdown-item>新增</el-dropdown-item>-->
+<!--          <el-dropdown-item>删除</el-dropdown-item>-->
+<!--        </el-dropdown-menu>-->
+<!--      </el-dropdown>-->
+<!--      <span>寒衣补助申请系统</span>-->
+<!--    </el-header>-->
   <el-aside :span="3" >
     <h5>主菜单</h5>
     <el-menu
@@ -66,10 +81,13 @@
 </template>
 
 <script>
+import {getBatch} from '../../api/api'
+
 export default {
   name: 'Student',
   data: function () {
     return {
+      batch: '',
       rules: {
         oldpassword: [
           {required: true, message: '请输入原密码', trigger: 'blur'}
@@ -89,7 +107,21 @@ export default {
       }
     }
   },
+  created () {
+    this.getBatch()
+  },
   methods: {
+    getBatch: function () {
+      getBatch().then(res => {
+        console.info(res)
+        if (res.data.flag > 0) {
+          console.info(res.data.flag)
+          this.batch = res.data.flag
+        } else {
+          this.batch = '当前不属于申请时间'
+        }
+      })
+    },
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
     },
@@ -137,6 +169,11 @@ export default {
 }
 </script>
 <style>
+/*.el-header {*/
+/*  background-color: #80b2e5;*/
+/*  color: #333;*/
+/*  line-height: 60px;*/
+/*}*/
   .el-aside {
     height: calc(100vh - 70px);
     overflow: hidden;
