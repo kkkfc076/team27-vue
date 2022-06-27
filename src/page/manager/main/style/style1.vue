@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-card class="crumbs-card">
-    </el-card>
+<!--    <el-card class="crumbs-card">-->
+<!--    </el-card>-->
     <el-card class="container">
       <el-form :inline="true" class="demo-form-inline">
         <el-form-item label="款式编号">
@@ -90,6 +90,7 @@ export default {
     return {
       info: [],
       data: '',
+      form: '',
       query: {
         pageNo: 1,
         pageSize: 10,

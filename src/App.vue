@@ -17,14 +17,6 @@ html,body,#app {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 10px;
+  margin-top: 0px;
 }
-.el-aside {
-  height: calc(100vh - 70px);
-}
-.el-main {
-  padding: 0;
-  height: calc(100vh - 70px);
-}
-
 </style>
