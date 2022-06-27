@@ -48,8 +48,8 @@
       width="100"
     >
       <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-        <el-button type="text" size="small">编辑</el-button>
+        <el-button @click="handleClick(scope.row.id)" type="text" size="small">进行审核</el-button>
+<!--        <el-button type="text" size="small">编辑</el-button>-->
       </template>
     </el-table-column>
   </el-table>
@@ -86,8 +86,11 @@ export default {
     this.aplly()
   },
   methods: {
-    handleClick () {
-      this.$router.push({name: 'submitting'})
+    handleClick (id) {
+      console.info(id)
+      this.$router.push({
+        name: 'submitting'
+      })
     }, // console.log(row)
     aplly () {
       waitForList(this.query).then(res => {

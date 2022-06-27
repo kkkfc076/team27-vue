@@ -30,19 +30,19 @@ const managerPage = [
           )
       },
       {
-        path: '/apply/apply3',
-        name: 'apply3',
-        component: () =>
-          import(
-            '../page/manager/main/apply/apply3'
-          )
-      },
-      {
         path: '/apply/apply2page/submitting',
         name: 'submitting',
         component: () =>
           import(
             '../page/manager/main/apply/apply2page/submitting'
+          )
+      },
+      {
+        path: '/apply/apply3',
+        name: 'apply3',
+        component: () =>
+          import(
+            '../page/manager/main/apply/apply3'
           )
       },
       {
