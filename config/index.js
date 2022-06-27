@@ -18,6 +18,14 @@ module.exports = {
           '^/api': '/api'   // 这种接口配置出来     http://localhost:8443/api/login
           // '^/api': '/' 这种接口配置出来     http://localhost:8443/login
         }
+      },
+      '/image':{
+        target: 'http://localhost:8082',// 要代理的域名
+        changeOrigin: true,// 允许跨域npm -g install npm
+        pathRewrite: {
+          '^/image': '/image'   // 这种接口配置出来     http://localhost:8443/api/login
+          // '^/api': '/' 这种接口配置出来     http://localhost:8443/login
+        }
       }
     },
 

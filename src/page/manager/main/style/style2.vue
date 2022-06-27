@@ -125,9 +125,17 @@ export default {
       this.$refs['elForm'].resetFields()
     },
     submitForm () {
-      addClothes(this.formData).then(res => {
-        console.info(res)
-      })
+      if (this.formData !== null) {
+        addClothes(this.formData).then(res => {
+          this.$message({
+            message: '提交成功',
+            type: 'success'
+          })
+          console.info(res)
+        })
+      } else {
+        this.$message.error('输入不能为空')
+      }
     }
   }
 }
