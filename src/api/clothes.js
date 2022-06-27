@@ -7,3 +7,9 @@ export const cloList = (query) => http.GET('/api/clothes/getClolist', query)
 
 // 学生获取寒衣
 export const getInfo = (query) => http.GET('/api/clothes/styles', query)
+
+// 删除单件款式
+export const deleteClothes = (clothes) => http.POST('/api/clothes/deleteClothes', clothes)
+
+// 编辑款式
+export const clothesUpdate = (clothes) => http.POST('/api/clothes/update', clothes)

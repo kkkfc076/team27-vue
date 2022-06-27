@@ -3,9 +3,23 @@
     <el-card class="crumbs-card">
     </el-card>
     <el-card class="container">
+      <el-form :inline="true" class="demo-form-inline">
+        <el-form-item label="款式编号">
+          <el-input v-model="query.style" placeholder="款式编号"></el-input>
+        </el-form-item>
+        <el-form-item label="性别">
+          <el-select v-model="query.sex" placeholder="性别">
+            <el-option label="男" value="男"></el-option>
+            <el-option label="女" value="女"></el-option>
+            <el-option label="全部" value=""></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="getInfo">查询</el-button>
+        </el-form-item>
+      </el-form>
       <el-table
         highlight-current-row
-        @current-change="choose"
         :data="info"
         border
         style="width: 100%">
@@ -33,6 +47,17 @@
           prop="size"
           label="尺码">
         </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              @click="handleEdit(scope.row)">编辑</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete( scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <el-pagination
         background
@@ -44,16 +69,20 @@
         layout="total, sizes, prev, pager, next, jumper"
         :total="query.total">
       </el-pagination>
+      <clothes-edit ref="cloEdit"/>
     </el-card>
     <h2></h2>
   </div>
 </template>
 
 <script>
-import {cloList} from '../../../../api/clothes'
-
+import {cloList, deleteClothes} from '../../../../api/clothes'
+import ClothesEdit from '../component/dialog'
 export default {
   name: 'style1',
+  components: {
+    ClothesEdit
+  },
   data () {
     return {
       info: [],
@@ -83,6 +112,21 @@ export default {
     pageNoChange (value) {
       this.query.pageNo = value
       this.getInfo()
+    },
+    handleEdit (clothes) {
+      this.$refs.cloEdit.show(clothes)
+    },
+    handleDelete (row) {
+      deleteClothes(row).then(res => {
+        console.info(res)
+        if (res.status) {
+          this.$message({
+            message: '删除成功',
+            type: 'success'
+          })
+        }
+        this.getInfo()
+      })
     }
   }
 }
