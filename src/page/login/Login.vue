@@ -76,6 +76,8 @@ export default {
         if (res.data) {
           if (res.data.permission) {
             this.$router.push({name: 'Managemain'})
+          } else {
+            this.$message.error('用户名或密码错误')
           }
         }
       })

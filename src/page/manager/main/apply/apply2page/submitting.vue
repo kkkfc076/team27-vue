@@ -1,73 +1,48 @@
+<!--待我审核子页面填写审核结果并提交-->
 <template>
 <el-card>
-<h1>本学院待审核学生申请</h1>
-<el-table
-  :data="waits"
-  border
-  style="width: 100%">
-  <el-table-column
-    fixed
-    prop="id"
-    label="id"
-    width="50"
-  >
-  </el-table-column>
-  <el-table-column
-    prop="manKey"
-    label="审核人账户"
-    width="100"
-  >
-  </el-table-column>
-  <el-table-column
-    prop="appKey"
-    label="申请编号"
-    width="100"
-  >
-  </el-table-column>
-  <el-table-column
-    prop="reason"
-    label="原因"
-  >
-  </el-table-column>
-  <el-table-column
-    prop="time"
-    label="申请时间"
-    width="150"
-  >
-  </el-table-column>
-  <el-table-column
-    prop="result"
-    label="提交状态"
-    width="100"
-  >
-  </el-table-column>
-  <el-table-column
-    prop="state"
-    label="审核状态"
-    width="100"
-  >
-    <template slot-scope="scope">
-      <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-      <el-button type="text" size="small">编辑</el-button>
-    </template>
-  </el-table-column>
-</el-table>
-<el-pagination
-  background
-  @size-change="pageSizeChange"
-  @current-change="pageNoChange"
-  :current-page="query.pageNo"
-  :page-sizes="[10,20,50]"
-  :page-size="query.pageSize"
-  layout="total, sizes, prev, pager, next, jumper"
-  :total="query.total">
-</el-pagination>
+<h1>审核页面</h1>
+  <el-descriptions title="" direction="vertical" :column="4" border>
+    <el-descriptions-item label="申请表编号" >kooriookami</el-descriptions-item>
+    <el-descriptions-item label="申请批次">18100000000</el-descriptions-item>
+    <el-descriptions-item label="学生学号" >苏州市</el-descriptions-item>
+    <el-descriptions-item label="学生贫困等级" :span="2">苏州市</el-descriptions-item>
+    <el-descriptions-item label="学生姓名">
+<!--      <el-tag size="small">学校</el-tag>-->
+    </el-descriptions-item>
+    <el-descriptions-item label="申请理由">江苏省苏州市吴中区吴中大道 1188 号</el-descriptions-item>
+  </el-descriptions>
+  <div style="margin: 80px 0;"></div>
+  <el-input
+    maxlength="150"
+    show-word-limit
+    type="textarea"
+    :rows="4"
+    label="asdasdasdasd"
+    placeholder="拒绝请输入理由"
+    v-model="textarea">
+  </el-input>
+  <div style="margin: 50px 0;"></div>
+  <el-row>
+    <el-button type="primary" @click="Yes">通过申请</el-button>
+    <el-button type="danger" @click="No">拒绝申请</el-button>
+  </el-row>
+  <div style="margin: 50px 0;"></div>
+  <el-row>
+    <el-button type="primary" @click="tempSave" plain>保存审核结果暂不提交</el-button>
+  </el-row>
+  <div style="margin: 50px 0;"></div>
 </el-card>
 </template>
 
 <script>
 export default {
-  name: 'submitting'
+  name: 'submitting',
+  data () {
+    return {
+      textarea: ''
+    }
+  }
 }
 </script>
 

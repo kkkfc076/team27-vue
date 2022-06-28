@@ -27,6 +27,9 @@
         <el-table-column
         prop="picture"
         label="图片">
+          <template slot-scope="scope">
+            <img width="100%" :src="scope.row.picture" alt="">
+          </template>
       </el-table-column>
         <el-table-column
         prop="batKey"
@@ -41,6 +44,16 @@
           label="尺码">
         </el-table-column>
       </el-table>
+      <el-pagination
+        background
+        @size-change="pageSizeChange"
+        @current-change="pageNoChange"
+        :current-page="query.pageNo"
+        :page-sizes="[10,20]"
+        :page-size="query.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="query.total">
+      </el-pagination>
     </el-card>
     <h2></h2>
     <el-row>
@@ -50,11 +63,18 @@
 </template>
 
 <script>
+import {getInfo} from '../../../api/clothes'
+
 export default {
   data () {
     return {
       info: [],
-      data: ''
+      data: '',
+      query: {
+        pageNo: 1,
+        pageSize: 10,
+        total: 0
+      }
     }
   },
   created () {
@@ -62,9 +82,10 @@ export default {
   },
   methods: {
     getInfo () {
-      this.$axios.get('/api/clothes/styles').then(res => {
+      getInfo(this.query).then(res => {
         console.info(res)
-        this.info = res.data.data.records
+        this.info = res.data.records
+        this.query.total = res.data.total
       })
     },
     choose (value) {
@@ -84,6 +105,14 @@ export default {
           })
         }
       })
+    },
+    pageSizeChange (value) {
+      this.query.pageSize = value
+      this.getInfo()
+    },
+    pageNoChange (value) {
+      this.query.pageNo = value
+      this.getInfo()
     }
   }
 }

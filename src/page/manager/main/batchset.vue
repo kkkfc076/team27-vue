@@ -1,5 +1,7 @@
 <template>
   <div class="el-main">
+        <el-card class="crumbs-card">
+        </el-card>
     <el-form :model="batchForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="批次编号" prop="bid">
         <el-input v-model="batchForm.bid"></el-input>

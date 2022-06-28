@@ -3,8 +3,8 @@
     <h1>批量审核界面</h1>
     <el-form>
       <el-form-item>
-        <el-button type="primary" @click="aplly" v-if="ids.length > 0 ">通过选中申请</el-button>
-        <el-button type="danger" @click="aplly" v-if="ids.length > 0 ">不通过选中申请</el-button>
+        <el-button type="primary" @click="approveApp" v-if="ids.length > 0 ">通过选中申请</el-button>
+        <el-button type="danger" @click="DisApproveApp" v-if="ids.length > 0 ">拒绝选中申请</el-button>
       </el-form-item>
     </el-form>
     <el-table
@@ -54,7 +54,7 @@
       </el-table-column>
       <el-table-column
         prop="state"
-        label="审核状态"
+        label="审核等级"
         width="100"
       >
       </el-table-column>
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import {waitForList} from '../../../../api/waitforcheckList'
+import {waitForList, batchApproveApp, batchDisApproveApp} from '../../../../api/waitforcheckList'
 
 export default {
 
@@ -107,6 +107,52 @@ export default {
         console.info(res)
         this.waits = res.data.records
         this.query.total = res.data.total
+      })
+    },
+    approveApp () {
+      let query = {ids: this.ids}
+      this.$confirm('此操作将通过选中所有用户的申请且不可撤销, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        batchApproveApp(query).then(res => {
+          if (res.status) {
+            this.$message({
+              message: '批量操作成功！已通过选中学生的申请',
+              type: 'success'
+            })
+            this.apply()
+          }
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消操作'
+        })
+      })
+    },
+    DisApproveApp () {
+      let query = {ids: this.ids}
+      this.$confirm('此操作将拒绝选中用户的申请且不可撤销, 是否继续?\n(批量审核时暂不支持填写未通过原因)', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        batchDisApproveApp(query).then(res => {
+          if (res.status) {
+            this.$message({
+              message: '批量操作成功！已拒绝选中学生的申请',
+              type: 'success'
+            })
+            this.apply()
+          }
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消操作'
+        })
       })
     },
     pageSizeChange (value) {

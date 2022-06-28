@@ -1,6 +1,6 @@
 <template>
   <el-card>
-    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+    <el-form :inline="true" class="demo-form-inline">
       <el-form-item label="管理员等级">
         <el-select v-model="query.mlevel" placeholder="管理员等级">
           <el-option label="学校" value="1"></el-option>
