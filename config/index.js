@@ -28,8 +28,14 @@ module.exports = {
         }
       }
     },
-
-
+      '/image': {
+        target: 'http://localhost:8082',// 要代理的域名
+        changeOrigin: true,// 允许跨域npm -g install npm
+        pathRewrite: {
+          "^/image": "/image"   // 这种接口配置出来     http://localhost:8443/api/login
+          // '^/api': '/' 这种接口配置出来     http://localhost:8443/login
+        }
+    },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined

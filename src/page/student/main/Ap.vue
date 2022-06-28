@@ -29,8 +29,8 @@
    </tr>
    </table>
    <br>
-       <button type="primary" @click="addReason" >提交申请(首次提交）</button>
-       <button type="primary" @click="updateReason" >修改申请（提交过）</button>
+       <button type="primary" @click="addReason"  :disabled="addFlag">提交申请(首次提交）</button>
+       <button type="primary" @click="updateReason" :disabled="updateFlag">修改申请（提交过）</button>
        <button>取消</button>
  </div>
 </template>
@@ -41,11 +41,14 @@ export default {
   data () {
     return {
       userList: [],
-      reason: ''
+      reason: '',
+      addFlag: true,
+      updateFlag:true
     }
   },
   created () {
     this.getInfo()
+    this.match()
   },
   methods: {
     getInfo () {
@@ -68,9 +71,23 @@ export default {
     },
     addReason () {
       var reason = this.reason
-      this.$axios.post(`/api/applicationform/saveReason`, {reason}).then(res => {
+      this.$axios.post(`/api/applicationform/addReason`, {reason}).then(res => {
         console.info(res.data.data)
       })
+    },
+    match(){
+      this.$axios.get(`/api/applicationform/match`).then(res => {
+        console.info(res.data)
+        let obtain = res.data.data.flag
+        if(obtain == 0){
+          this.addFlag=true;//为灰色
+          this.updateFlag=false;
+        }else{
+          this.addFlag=false;
+          this.updateFlag=true;
+        }
+      })
+
     }
   }
 }

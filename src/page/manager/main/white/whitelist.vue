@@ -14,6 +14,13 @@
         <el-button type="danger" v-if="ids.length>0" @click="setPers">授权</el-button>
       </el-form-item>
     </el-form>
+    <el-upload
+      class="upload-demo"
+      action="/api/manager/importMan"
+      multiple>
+      <el-button size="small" type="primary">点击上传管理员名单</el-button>
+      <div slot="tip" class="el-upload__tip">只能上传excel文件</div>
+    </el-upload>
     <el-table
       :data="mans"
       style="width: 955px"
@@ -61,7 +68,7 @@
 </template>
 
 <script>
-import {manList, setPermissions} from '../../../api/manList'
+import {manList, setPermissions} from '../../../../api/manList'
 
 export default {
   name: 'whitelist',

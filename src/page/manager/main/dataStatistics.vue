@@ -1,12 +1,10 @@
 <template>
-  <div>
-
-  </div>
+<h1>这是数据总览</h1>
 </template>
 
 <script>
 export default {
-  name: 'ModifyPwd'
+  name: "dataStatistics"
 }
 </script>
 

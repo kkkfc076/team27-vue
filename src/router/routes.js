@@ -72,13 +72,29 @@ const managerPage = [
           )
       },
       {
-        path: '/whitelist',
+        path: '/white/whitelist',
         name: 'whitelist',
         component: () =>
           import(
-            '../page/manager/main/whitelist'
+            '../page/manager/main/white/whitelist'
           )
-      }
+      },
+      {
+        path: '/white/Addstudent',
+        name: 'Addstudent',
+        component: () =>
+          import(
+            '../page/manager/main/white/Addstudent'
+          )
+      },
+      {
+        path: '/dataStatistics',
+        name: 'dataStatistics',
+        component: () =>
+          import(
+            '../page/manager/main/dataStatistics'
+            )
+      },
     ]
   }
 ]

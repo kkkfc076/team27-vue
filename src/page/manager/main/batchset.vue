@@ -29,6 +29,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'batchset',
   data () {
@@ -61,6 +62,7 @@ export default {
         console.assert(res.data.data)
         if (res.data.data.flag === 2) {
           alert('创建成功!')
+          this.$router.push({name: 'apply1'})
         } else {
           alert(' 错误！')
           return false

@@ -1,18 +1,6 @@
 <template>
   <div>
     <el-container>
-<!--      <el-header style="text-align: left; font-size: 20px" class="el-header">-->
-<!--        <el-dropdown>-->
-<!--          <i class="el-icon-s-custom" style="margin-right: 15px"></i>-->
-<!--          <el-dropdown-menu slot="dropdown">-->
-<!--            <el-dropdown-item>查看</el-dropdown-item>-->
-<!--            <el-dropdown-item>新增</el-dropdown-item>-->
-<!--            <el-dropdown-item>删除</el-dropdown-item>-->
-<!--          </el-dropdown-menu>-->
-<!--        </el-dropdown>-->
-<!--        <span>寒衣补助申请系统</span>-->
-<!--        <span>{{newDate}}</span>-->
-<!--      </el-header>-->
       <el-aside :span="3" id="76" class="el-aside" >
         <h5>主菜单</h5>
         <el-menu
@@ -27,9 +15,9 @@
             </template>
             <el-menu-item-group>
               <template slot="title"></template>
-              <el-menu-item index="1-1" @click="aplly1()">批量审核</el-menu-item>
-              <el-menu-item index="1-2" @click="aplly2()">待我审核</el-menu-item>
-              <el-menu-item index="1-3" @click="aplly3()">审核历史</el-menu-item>
+              <el-menu-item :disabled="submissionFlag" index="1-1" @click="aplly1()">批量审核</el-menu-item>
+              <el-menu-item :disabled="submissionFlag" index="1-2" @click="aplly2()">待我审核</el-menu-item>
+              <el-menu-item :disabled="submissionFlag" index="1-3" @click="aplly3()">审核历史</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-menu-item index="2" @click="batchset()">
@@ -41,16 +29,27 @@
               <i class="el-icon-location"></i>
               <span>寒衣管理</span>
             </template>
-            <el-menu-item-group>
+            <el-menu-item-group >
               <template slot="title"></template>
               <el-menu-item index="3-1" @click="style1()">款式管理</el-menu-item>
-              <el-menu-item index="3-2" @click="style2()">款式添加</el-menu-item>
+              <el-menu-item :disabled="submissionFlag" index="3-2" @click="style2()">款式添加</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="4" @click="whitelist()">
-            <i class="el-icon-document"></i>
-            <span>白名单设置</span>
-          </el-menu-item>
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>白名单设置</span>
+            </template>
+            <el-menu-item-group>
+              <template slot="title"></template>
+              <el-menu-item index="4-1" @click="whitelist()">管理员授权</el-menu-item>
+              <el-menu-item index="4-2" @click="addstudent()">学生导入</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+<!--          <el-menu-item index="4" @click="whitelist()">-->
+<!--            <i class="el-icon-document"></i>-->
+<!--            <span>白名单设置</span>-->
+<!--          </el-menu-item>-->
           <el-menu-item index="5" @click="handleEdit()">
             <i class="el-icon-document"></i>
             <span>修改密码</span>
@@ -72,14 +71,15 @@
     <update-pwd ref="updateP"/>
   </div>
 </template>
-<script>
-import UpdatePwd from './main/component/updatePwd'
-import {getBatch} from '../../api/api'
 
+<script>
+import UpdatePwd from '../manager/main/component/updatePwd'
+import {getBatch} from '../../api/api'
 export default {
   name: 'Managemain',
   data: function () {
     return {
+      submissionFlag: false,
       batch: ''
     }
   },
@@ -115,6 +115,9 @@ export default {
     whitelist () {
       this.$router.push({name: 'whitelist'})
     },
+    addstudent () {
+      this.$router.push({name: 'Addstudent'})
+    },
     back () {
       this.$router.push({name: 'Login'})
     },
@@ -128,6 +131,7 @@ export default {
           console.info(res.data.flag)
           this.batch = res.data.flag
         } else {
+          this.submissionFlag=true;
           this.batch = '当前不在任何批次，您可以新建批次！'
         }
       })
