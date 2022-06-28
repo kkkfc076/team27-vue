@@ -47,10 +47,21 @@
               <el-menu-item index="3-2" @click="style2()">款式添加</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="4" @click="whitelist()">
-            <i class="el-icon-document"></i>
-            <span>白名单设置</span>
-          </el-menu-item>
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>白名单设置</span>
+            </template>
+            <el-menu-item-group>
+              <template slot="title"></template>
+              <el-menu-item index="4-1" @click="whitelist()">管理员授权</el-menu-item>
+              <el-menu-item index="4-2" @click="addstudent()">学生导入</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+<!--          <el-menu-item index="4" @click="whitelist()">-->
+<!--            <i class="el-icon-document"></i>-->
+<!--            <span>白名单设置</span>-->
+<!--          </el-menu-item>-->
           <el-menu-item index="5" @click="handleEdit()">
             <i class="el-icon-document"></i>
             <span>修改密码</span>
@@ -114,6 +125,9 @@ export default {
     },
     whitelist () {
       this.$router.push({name: 'whitelist'})
+    },
+    addstudent () {
+      this.$router.push({name: 'Addstudent'})
     },
     back () {
       this.$router.push({name: 'Login'})
