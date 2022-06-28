@@ -1,18 +1,8 @@
-// 选择寒衣的款式以及尺码
 <template>
   <div>
-    <el-card class="crumbs-card">
-      <div class="crumbs">
-        <el-breadcrumb separator="/">
-          <el-breadcrumb-item to="{'path:/student'}">首页</el-breadcrumb-item>
-          <el-breadcrumb-item to="{'path:/student/regis'}">寒衣款式列表</el-breadcrumb-item>
-        </el-breadcrumb>
-      </div>
-    </el-card>
     <el-card class="container">
       <el-table
         highlight-current-row
-        @current-change="choose"
         :data="info"
         border
         style="width: 100%">
@@ -25,20 +15,20 @@
           label="款式编号">
         </el-table-column>
         <el-table-column
-        prop="picture"
-        label="图片">
+          prop="picture"
+          label="图片">
           <template slot-scope="scope">
-            <img width="100%" :src="scope.row.picture" alt="">
+            <img width=100px height="100px" :src="scope.row.picture" alt="">
           </template>
-      </el-table-column>
+        </el-table-column>
         <el-table-column
-        prop="batKey"
-        label="批次">
-      </el-table-column>
+          prop="batKey"
+          label="批次">
+        </el-table-column>
         <el-table-column
-        prop="sex"
-        label="性别">
-      </el-table-column>
+          prop="sex"
+          label="性别">
+        </el-table-column>
         <el-table-column
           prop="size"
           label="尺码">
@@ -49,19 +39,15 @@
         @size-change="pageSizeChange"
         @current-change="pageNoChange"
         :current-page="query.pageNo"
-        :page-sizes="[10,20]"
+        :page-sizes="[5,10]"
         :page-size="query.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="query.total">
       </el-pagination>
+      <clothes-edit ref="cloEdit"/>
     </el-card>
-    <h2></h2>
-    <el-row>
-      <el-button type="primary" plain @click="confirm">确认选择</el-button>
-    </el-row>
   </div>
 </template>
-
 <script>
 import {getInfo} from '../../../api/clothes'
 
@@ -72,7 +58,7 @@ export default {
       data: '',
       query: {
         pageNo: 1,
-        pageSize: 10,
+        pageSize: 5,
         total: 0
       }
     }

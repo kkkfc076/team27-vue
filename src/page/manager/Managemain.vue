@@ -71,10 +71,10 @@
     <update-pwd ref="updateP"/>
   </div>
 </template>
-<script>
-import UpdatePwd from './main/component/updatePwd'
-import {getBatch} from '../../api/api'
 
+<script>
+import UpdatePwd from '../manager/main/component/updatePwd'
+import {getBatch} from '../../api/api'
 export default {
   name: 'Managemain',
   data: function () {

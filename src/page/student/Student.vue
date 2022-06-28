@@ -12,7 +12,7 @@
 <!--      </el-dropdown>-->
 <!--      <span>寒衣补助申请系统</span>-->
 <!--    </el-header>-->
-  <el-aside :span="3" class="el-aside">
+  <el-aside :span="3" >
     <h5>主菜单</h5>
     <el-menu
       default-active="2"
@@ -49,11 +49,7 @@
       </el-menu-item>
     </el-menu>
   </el-aside>
-    <el-main class="el-main">
-      <tr>
-        <th scope="row">当前批次为：</th>
-        <td>{{batch}}</td>
-      </tr>
+    <el-main>
       <router-view></router-view>
     </el-main>
   </el-container>
