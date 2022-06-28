@@ -2,10 +2,9 @@
   <div>
     <el-card class="container">
       <el-table
-        highlight-current-row
         :data="info"
-        border
-        style="width: 100%">
+        highlight-current-row
+        @current-change="choose">
         <el-table-column
           prop="cname"
           label="款式名称">
@@ -46,6 +45,7 @@
       </el-pagination>
       <clothes-edit ref="cloEdit"/>
     </el-card>
+    <el-button type="primary" plain @click="confirm">确认</el-button>
   </div>
 </template>
 <script>
@@ -86,7 +86,7 @@ export default {
             confirmButtonText: '确定'
           })
         } else {
-          this.$alert('选择寒衣失败', '选择结果', {
+          this.$alert('选择寒衣失败,请查看是否有权限', '选择结果', {
             confirmButtonText: '确定'
           })
         }
