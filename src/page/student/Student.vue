@@ -19,15 +19,15 @@
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose">
-      <el-menu-item index="1" @click="ap()">
+      <el-menu-item :disabled="submissionFlag" index="1" @click="ap()">
           <i class="el-icon-tickets"></i>
           <span>寒衣申请</span>
       </el-menu-item>
-      <el-menu-item index="2" @click="apinfo()">
+      <el-menu-item :disabled="submissionFlag" index="2" @click="apinfo()">
           <i class="el-icon-document"></i>
           <span>申请信息</span>
       </el-menu-item>
-      <el-menu-item index="3" @click="regis()">
+      <el-menu-item :disabled="submissionFlag" index="3" @click="regis()">
         <i class="el-icon-tickets"></i>
         <span slot="title">寒衣登记</span>
       </el-menu-item>
@@ -87,6 +87,7 @@ export default {
   name: 'Student',
   data: function () {
     return {
+      submissionFlag: false,
       batch: '',
       rules: {
         oldpassword: [
@@ -118,6 +119,7 @@ export default {
           console.info(res.data.flag)
           this.batch = res.data.flag
         } else {
+          this.submissionFlag=true;
           this.batch = '当前不属于申请时间'
         }
       })
