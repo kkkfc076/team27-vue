@@ -1,18 +1,6 @@
 <template>
   <div>
     <el-container>
-<!--      <el-header style="text-align: left; font-size: 20px" class="el-header">-->
-<!--        <el-dropdown>-->
-<!--          <i class="el-icon-s-custom" style="margin-right: 15px"></i>-->
-<!--          <el-dropdown-menu slot="dropdown">-->
-<!--            <el-dropdown-item>查看</el-dropdown-item>-->
-<!--            <el-dropdown-item>新增</el-dropdown-item>-->
-<!--            <el-dropdown-item>删除</el-dropdown-item>-->
-<!--          </el-dropdown-menu>-->
-<!--        </el-dropdown>-->
-<!--        <span>寒衣补助申请系统</span>-->
-<!--        <span>{{newDate}}</span>-->
-<!--      </el-header>-->
       <el-aside :span="3" id="76" class="el-aside" >
         <h5>主菜单</h5>
         <el-menu

@@ -72,7 +72,7 @@ export default {
       this.imageUrl = clothes.picture
     },
     handleAvatarSuccess (res, file) {
-      this.formData.picture = res.url
+      this.clothes.picture = res.url
       this.imageUrl = URL.createObjectURL(file.raw)
     },
     beforeAvatarUpload (file) {
