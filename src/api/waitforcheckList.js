@@ -3,3 +3,8 @@ export const waitForList = (query) => http.GET('/api/managerApplication/pageList
 export const checkedList = (query) => http.GET('/api/managerApplication/checkedPageList', query)
 export const batchApproveApp = (query) => http.POST('/api/managerApplication/submitsApprove', query)
 export const batchDisApproveApp = (query) => http.POST('/api/managerApplication/submitsDisApprove', query)
+export const getApperInfo = (id, query) => http.GET('/api/managerApplication/appInfo/' + id, {id}, query)
+export const getsAppInfo = (id, query) => http.GET('/api/managerApplication/sAppInfo/' + id, {id}, query)
+export const tempsaveReson = (reason, id) => http.POST('/api/managerApplication/tempSave/' + id, {reason}, id)
+export const approve = (reason, id) => http.POST('/api/managerApplication/approve/' + id, {reason}, id)
+export const disapprove = (reason, id) => http.POST('/api/managerApplication/disapprove/' + id, {reason}, id)
