@@ -87,10 +87,8 @@ export default {
   },
   methods: {
     handleClick (id) {
-      console.info(id)
-      this.$router.push({
-        name: 'submitting'
-      })
+      // console.info(id)
+      this.$router.push({name: 'submitting', params: {id: id}})
     }, // console.log(row)
     aplly () {
       waitForList(this.query).then(res => {

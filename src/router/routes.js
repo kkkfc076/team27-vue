@@ -29,9 +29,11 @@ const managerPage = [
             '../page/manager/main/apply/apply2'
           )
       },
+
       {
-        path: '/apply/apply2page/submitting',
+        path: '/apply/apply2page/submitting/:id',
         name: 'submitting',
+        meta: {requireAuth: true},
         component: () =>
           import(
             '../page/manager/main/apply/apply2page/submitting'
