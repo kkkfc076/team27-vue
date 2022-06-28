@@ -84,7 +84,15 @@ const managerPage = [
           import(
             '../page/manager/main/white/Addstudent'
           )
-      }
+      },
+      {
+        path: '/dataStatistics',
+        name: 'dataStatistics',
+        component: () =>
+          import(
+            '../page/manager/main/dataStatistics'
+            )
+      },
     ]
   }
 ]
