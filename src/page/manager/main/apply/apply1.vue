@@ -3,7 +3,7 @@
     <h1>批量审核界面</h1>
     <el-form>
       <el-form-item>
-        <el-button type="primary"@click="aplly"v-if="ids.length > 0 ">通过选中申请</el-button>
+        <el-button type="primary" @click="aplly" v-if="ids.length > 0 ">通过选中申请</el-button>
         <el-button type="danger" @click="aplly" v-if="ids.length > 0 ">不通过选中申请</el-button>
       </el-form-item>
     </el-form>
@@ -96,10 +96,10 @@ export default {
     handleSelectionChange (selectedNo) {
       console.info(selectedNo)
       let ids = []
-      for(let i =0;i<selectedNo.length;i++){
+      for (let i = 0; i < selectedNo.length; i++) {
         ids.push(selectedNo[i].id)
       }
-      this.ids=ids
+      this.ids = ids
       // this.ids = selectedNo.map(manager_application => manager_application.id)
     },
     aplly () {
