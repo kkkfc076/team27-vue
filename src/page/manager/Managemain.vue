@@ -15,9 +15,9 @@
             </template>
             <el-menu-item-group>
               <template slot="title"></template>
-              <el-menu-item index="1-1" @click="aplly1()">批量审核</el-menu-item>
-              <el-menu-item index="1-2" @click="aplly2()">待我审核</el-menu-item>
-              <el-menu-item index="1-3" @click="aplly3()">审核历史</el-menu-item>
+              <el-menu-item :disabled="submissionFlag" index="1-1" @click="aplly1()">批量审核</el-menu-item>
+              <el-menu-item :disabled="submissionFlag" index="1-2" @click="aplly2()">待我审核</el-menu-item>
+              <el-menu-item :disabled="submissionFlag" index="1-3" @click="aplly3()">审核历史</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-menu-item index="2" @click="batchset()">
@@ -29,10 +29,10 @@
               <i class="el-icon-location"></i>
               <span>寒衣管理</span>
             </template>
-            <el-menu-item-group>
+            <el-menu-item-group >
               <template slot="title"></template>
               <el-menu-item index="3-1" @click="style1()">款式管理</el-menu-item>
-              <el-menu-item index="3-2" @click="style2()">款式添加</el-menu-item>
+              <el-menu-item :disabled="submissionFlag" index="3-2" @click="style2()">款式添加</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="4">
@@ -79,6 +79,7 @@ export default {
   name: 'Managemain',
   data: function () {
     return {
+      submissionFlag: false,
       batch: ''
     }
   },
@@ -130,6 +131,7 @@ export default {
           console.info(res.data.flag)
           this.batch = res.data.flag
         } else {
+          this.submissionFlag=true;
           this.batch = '当前不在任何批次，您可以新建批次！'
         }
       })
