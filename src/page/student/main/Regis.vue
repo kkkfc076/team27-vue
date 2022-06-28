@@ -61,17 +61,17 @@ export default {
     this.getInfo()
   },
   methods: {
-    getInfo() {
+    getInfo () {
       this.$axios.get('/api/clothes/styles').then(res => {
         console.info(res)
         this.info = res.data.data.records
       })
     },
-    choose(value) {
+    choose (value) {
       console.info(value)
       this.data = value
     },
-    confirm() {
+    confirm () {
       this.$axios.post('/api/applicationform/choose', this.data).then(res => {
         console.info(res)
         if (res.data.data.flag === 2) {

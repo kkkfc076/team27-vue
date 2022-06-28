@@ -45,16 +45,17 @@
       </tr>
       <tr>
         <th scope="row">款式</th>
-        <td>{{CInfo.cname}}</td>
+        <td>{{CList.cname}}</td>
       </tr>
       <tr>
         <th scope="row">型号</th>
-        <td> {{CInfo.size}}<br></td>
+        <td> {{CList.size}}<br></td>
       </tr>
       <tr>
         <th scope="row">图片</th>
-        <td>{{CInfo.pictcre}}</td>
+        <td><img :src="CList.picture" width="300xp"/></td>
       </tr>
+
     </table>
   </div>
 </template>
@@ -64,33 +65,34 @@ export default {
   name: 'ApInfo',
   data () {
     return {
-      APList: [],
       userList: [],
-      CInfo: []
+      APList:[],
+      CList:[]
     }
   },
   created () {
-    this.getAP()
     this.getInfo()
+    this.getAP()
     this.getCInfo()
   },
   methods: {
-    getAP () {
-      this.$axios.get(`/api/applicationform/getAPInfo`).then(res => {
-        console.info(res.data)
-        this.APList = res.data.data
-      })
-    },
+
     getInfo () {
       this.$axios.get(`/api/student/getInfo`).then(res => {
         console.info(res.data)
         this.userList = res.data.data
       })
     },
-    getCInfo () {
-      this.$axios.get('/api/clothes/getCInfo').then(res => {
+    getAP(){
+      this.$axios.get('api/applicationform/getAPInfo').then(res=>{
         console.info(res.data)
-        this.CInfo = res.data.data
+        this.APList=res.data.data
+      })
+    },
+    getCInfo(){
+      this.$axios.get('api/clothes/getCInfo').then(res=>{
+        console.info(res.data)
+        this.CList=res.data.data
       })
     }
   }
