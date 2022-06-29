@@ -69,10 +69,13 @@ export default {
       this.$axios.post(`/api/applicationform/updateReason`, {reason}).then(res => {
         console.info(res.data.data)
         if (res.data.data.flag === 2) {
-          alert('成功')
+          this.$alert('修改申请理由成功', '修改结果', {
+            confirmButtonText: '确定',
+          })
         } else {
-          alert('失败')
-          return false
+          this.$alert('修改申请理由失败', '修改结果', {
+            confirmButtonText: '确定',
+          })
         }
       })
     },
