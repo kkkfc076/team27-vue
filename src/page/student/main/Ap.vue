@@ -24,14 +24,13 @@
        <td>{{userList.pyear}}</td>
      </tr>
      <tr>
-     <th scope="row">申请原因</th>
-     <td><el-input type="text" v-model="reason"></el-input></td>
+     <th scope="row" >申请原因</th>
+     <td><el-input type="text" v-model="reason" :placeholder="APList.reason"></el-input></td>
    </tr>
    </table>
    <br>
        <button type="primary" @click="addReason"  :disabled="addFlag">提交申请(首次提交）</button>
        <button type="primary" @click="updateReason" :disabled="updateFlag">修改申请（提交过）</button>
-       <button>取消</button>
  </div>
 </template>
 
@@ -40,6 +39,7 @@ export default {
   name: 'Ap',
   data () {
     return {
+      APList:[],
       userList: [],
       reason: '',
       addFlag: true,
@@ -49,8 +49,15 @@ export default {
   created () {
     this.getInfo()
     this.match()
+    this.getAP()
   },
   methods: {
+    getAP(){
+      this.$axios.get('api/applicationform/getAPInfo').then(res=>{
+        console.info(res.data)
+        this.APList=res.data.data
+      })
+    },
     getInfo () {
       this.$axios.get(`/api/student/getInfo`).then(res => {
         console.info(res.data)
