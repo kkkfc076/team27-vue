@@ -32,7 +32,7 @@
         <th scope="row">申请结果</th>
         <td>
           <span v-if="APList.result">
-            <span class="el-icon-circle-check">
+            <span class="el-icon-success" style="color: #009999">
               通过
             </span>
           </span>
