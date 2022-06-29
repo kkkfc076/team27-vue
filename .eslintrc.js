@@ -6,7 +6,7 @@ module.exports = {
     parser: 'babel-eslint'
   },
   env: {
-    browser: true, BASE_URL: ""
+    browser: true,
 
   },
   extends: [

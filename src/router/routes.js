@@ -18,7 +18,7 @@ const managerPage = [
         name: 'Maindata',
         component: () =>
           import(
-            '../page/manager/Maindata'
+            '../page/manager/main/Maindata'
             )
       },
       {
@@ -149,4 +149,5 @@ const studentPage = [
     ]
   }
 ]
+
 export default [...loginPage, ...managerPage, ...studentPage]

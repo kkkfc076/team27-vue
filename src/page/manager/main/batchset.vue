@@ -1,6 +1,7 @@
 <template>
   <div class="el-main">
     <el-card>
+      <h1>新建批次</h1>
       <el-form :model="batchForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="批次编号" prop="bid">
           <el-input v-model="batchForm.bid"></el-input>

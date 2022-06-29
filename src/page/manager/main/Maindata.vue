@@ -29,7 +29,7 @@
   </el-select>
     </div></el-col>
     <el-col :span="2"><div class="grid-content bg-purple">
-    <el-button type="primary"@click="searchData">查询</el-button>
+    <el-button type="primary" @click="searchData">查询</el-button>
     </div></el-col>
     <el-col :span="1"><div class="grid-content bg-purple">
     <el-button type="primary" @click="exportExcel">导出数据</el-button>
@@ -41,25 +41,25 @@
     <el-col :span="6">
       <span style="color: #8c939d " >申请人数(人)</span>
       <el-card shadow="hover">
-        总是显示
+        {{this.applys.total}}
       </el-card>
     </el-col>
     <el-col :span="6">
       <span style="color: #8c939d">已通过审核(人)</span>
       <el-card shadow="hover">
-        鼠标悬浮时显示
+        {{this.applys.pass}}
       </el-card>
     </el-col>
     <el-col :span="6">
       <span style="color: #8c939d">未通过审核(人)</span>
       <el-card shadow="hover">
-        从不显示
+        {{this.applys.unpass}}
       </el-card>
     </el-col>
     <el-col :span="6">
       <span style="color: #8c939d">审核中(人)</span>
       <el-card shadow="hover">
-        从不显示
+        {{this.applys.unCheck}}
       </el-card>
     </el-col>
   </el-row>
@@ -67,28 +67,22 @@
   <h1 align="left" style="font-size: medium">款式数量统计</h1>
   <el-card body-style="padding: 15px">
     <el-row :gutter="0">
-      <el-col :span="6">
+      <el-col :span="8">
         <span style="color: #8c939d " >总款式(件)</span>
         <el-card shadow="hover">
-          总是显示
+          {{ this.styles.total }}
         </el-card>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="8">
         <span style="color: #8c939d">男款(件)</span>
         <el-card shadow="hover">
-          鼠标悬浮时显示
+          {{ this.styles.man }}
         </el-card>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="8">
         <span style="color: #8c939d">女款(件)</span>
         <el-card shadow="hover">
-          从不显示
-        </el-card>
-      </el-col>
-      <el-col :span="6">
-        <span style="color: #8c939d">男女皆宜款(件)</span>
-        <el-card shadow="hover">
-          从不显示
+          {{ this.styles.woman }}
         </el-card>
       </el-col>
     </el-row>
@@ -129,8 +123,38 @@
 </template>
 
 <script>
+import {applyStatistics, cloStatistics} from '../../../api/api'
+
 export default {
-  name: 'Maindata'
+  name: 'Maindata',
+  data () {
+    return {
+      applys: [],
+      styles: []
+    }
+  },
+  created () {
+    this.ApplyStatistics()
+    this.CloSatistics()
+  },
+  methods: {
+    // statistics () {
+    //   this.ApplyStatistics
+    //   this.CloSatistics
+    // },
+    ApplyStatistics () {
+      applyStatistics().then(res => {
+        console.info(res)
+        this.applys = res.data
+      })
+    },
+    CloSatistics () {
+      cloStatistics().then(res => {
+        console.info(res)
+        this.styles = res.data
+      })
+    }
+  }
 }
 </script>
 
