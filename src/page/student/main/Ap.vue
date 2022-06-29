@@ -60,7 +60,7 @@ export default {
     updateReason () {
       var reason = this.reason
       this.$axios.post(`/api/applicationform/updateReason`, {reason}).then(res => {
-        console.info(res.data)
+        console.info(res.data.data)
         if (res.data.data.flag === 2) {
           alert('成功')
         } else {
@@ -71,8 +71,14 @@ export default {
     },
     addReason () {
       var reason = this.reason
-      this.$axios.post(`/api/applicationform/addReason`, {reason}).then(res => {
+      this.$axios.post(`/api/applicationform/saveReason`, {reason}).then(res => {
         console.info(res.data.data)
+        if (res.data.data.id !== null) {
+          alert('成功')
+        } else {
+          alert('失败')
+          return false
+        }
       })
     },
     match(){
