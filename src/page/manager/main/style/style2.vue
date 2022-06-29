@@ -67,6 +67,7 @@ export default {
         size: '',
         style: '',
         sex: '',
+        batKey:'',
         picture: ''
       },
       imageUrl: '',
@@ -134,6 +135,7 @@ export default {
               type: 'success'
             })
             console.info(res)
+            this.$router.push("style1")
           })
         } else {
           this.$message.error('输入不能为空！')

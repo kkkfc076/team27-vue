@@ -8,7 +8,7 @@
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose">
-          <el-menu-item index="2" @click="mainData()">
+          <el-menu-item index="7" @click="mainData()">
             <i class="el-icon-data-board"></i>
             <span>申请总览</span>
           </el-menu-item>
@@ -50,10 +50,6 @@
               <el-menu-item index="4-2" @click="addstudent()">学生导入</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-<!--          <el-menu-item index="4" @click="whitelist()">-->
-<!--            <i class="el-icon-document"></i>-->
-<!--            <span>白名单设置</span>-->
-<!--          </el-menu-item>-->
           <el-menu-item index="5" @click="handleEdit()">
             <i class="el-icon-document"></i>
             <span>修改密码</span>

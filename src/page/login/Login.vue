@@ -75,7 +75,7 @@ export default {
       tlogin(manager).then(res => {
         if (res.data) {
           if (res.data.permission) {
-            this.$router.push({name: 'Managemain'})
+            this.$router.push({name: 'Maindata'})
           } else {
             this.$message.error('用户名或密码错误')
           }
