@@ -101,8 +101,8 @@ export default {
     handleClose (key, keyPath) {
       console.log(key, keyPath)
     },
-    mainData(){
-      this.$router.push({name:'Maindata'})
+    mainData () {
+      this.$router.push({name: 'Maindata'})
     },
     aplly1 () {
       this.$router.push({name: 'apply1'})
@@ -141,7 +141,7 @@ export default {
           console.info(res.data.flag)
           this.batch = res.data.flag
         } else {
-          this.submissionFlag=true;
+          this.submissionFlag = true
           this.batch = '当前不在任何批次，您可以新建批次！'
         }
       })
