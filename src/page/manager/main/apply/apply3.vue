@@ -32,7 +32,7 @@
       </el-table-column>
       <el-table-column
         prop="time"
-        label="申请时间"
+        label="审核结果提交时间"
         width="150"
       >
       </el-table-column>

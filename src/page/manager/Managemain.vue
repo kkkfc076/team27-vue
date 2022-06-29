@@ -8,6 +8,10 @@
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose">
+          <el-menu-item index="2" @click="mainData()">
+            <i class="el-icon-data-board"></i>
+            <span>申请总览</span>
+          </el-menu-item>
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
@@ -93,6 +97,9 @@ export default {
     },
     handleClose (key, keyPath) {
       console.log(key, keyPath)
+    },
+    mainData(){
+      this.$router.push({name:'Maindata'})
     },
     aplly1 () {
       this.$router.push({name: 'apply1'})

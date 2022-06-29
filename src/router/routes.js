@@ -14,6 +14,14 @@ const managerPage = [
       import('../page/manager/Managemain'),
     children: [
       {
+        path: '/manager',
+        name: 'Maindata',
+        component: () =>
+          import(
+            '../page/manager/Maindata'
+            )
+      },
+      {
         path: '/apply/apply1',
         name: 'apply1',
         component: () =>
