@@ -79,6 +79,7 @@ export default {
           alert('失败')
           return false
         }
+        this.match()
       })
     },
     match(){
