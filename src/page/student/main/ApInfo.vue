@@ -37,7 +37,7 @@
             </span>
           </span>
           <span v-else>
-            <span class="el-icon-circle-close">
+            <span class="el-icon-circle-close" style="color: #FF3333">
               不通过
             </span>
           </span>
