@@ -7,6 +7,10 @@
     border
     style="width: 100%">
     <el-table-column
+      prop="aid"
+      label="申请编号">
+    </el-table-column>
+    <el-table-column
       prop="batKey"
       label="批次">
     </el-table-column>
