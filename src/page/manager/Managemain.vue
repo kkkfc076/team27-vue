@@ -1,6 +1,16 @@
 <template>
   <div>
     <el-container>
+      <el-header style="text-align: left; font-size: 20px" class="el-header">
+        <el-dropdown>
+          <i class="el-icon-s-custom" style="margin-right: 15px"></i>
+          <el-dropdown-menu slot="dropdown">
+          </el-dropdown-menu>
+        </el-dropdown>
+        <span>寒衣补助申请系统</span>
+        <span>当前批次为：{{batch}}</span>
+      </el-header>
+      <el-container>
       <el-aside :span="3" id="76" class="el-aside" >
         <h5>主菜单</h5>
         <el-menu
@@ -61,12 +71,9 @@
         </el-menu>
       </el-aside>
       <el-main class="el-main">
-        <tr>
-          <th scope="row">当前批次为：</th>
-          <td>{{batch}}</td>
-        </tr>
         <router-view></router-view>
       </el-main>
+      </el-container>
     </el-container>
     <update-pwd ref="updateP"/>
   </div>
@@ -144,11 +151,11 @@ export default {
 </script>
 
 <style scoped>
-/*.el-header {*/
-/*  background-color: #80b2e5;*/
-/*  color: #333;*/
-/*  line-height: 60px;*/
-/*}*/
+.el-header {
+  background-color: #80b2e5;
+  color: #333;
+  line-height: 60px;
+}
 .el-aside {
   height: calc(100% - 20px);
   overflow: hidden;

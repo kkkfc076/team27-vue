@@ -1,18 +1,19 @@
 <template>
   <div>
   <el-container>
-<!--    <el-header style="text-align: left; font-size: 20px" class="el-header">-->
-<!--      <el-dropdown>-->
-<!--        <i class="el-icon-s-custom" style="margin-right: 15px"></i>-->
-<!--        <el-dropdown-menu slot="dropdown">-->
-<!--          <el-dropdown-item>查看</el-dropdown-item>-->
-<!--          <el-dropdown-item>新增</el-dropdown-item>-->
-<!--          <el-dropdown-item>删除</el-dropdown-item>-->
-<!--        </el-dropdown-menu>-->
-<!--      </el-dropdown>-->
-<!--      <span>寒衣补助申请系统</span>-->
-<!--    </el-header>-->
-  <el-aside :span="3" >
+    <el-header style="text-align: left; font-size: 20px" class="el-header">
+      <el-dropdown>
+        <i class="el-icon-s-custom" style="margin-right: 15px"></i>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>查看</el-dropdown-item>
+          <el-dropdown-item>新增</el-dropdown-item>
+          <el-dropdown-item>删除</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <span>寒衣补助申请系统</span>
+    </el-header>
+    <el-container>
+  <el-aside :span="3">
     <h5>主菜单</h5>
     <el-menu
       default-active="2"
@@ -52,6 +53,7 @@
     <el-main>
       <router-view></router-view>
     </el-main>
+    </el-container>
   </el-container>
     <!-- 修改密码弹出框 -->
     <el-dialog title="修改密码" :visible.sync="dialogFormVisible">
@@ -167,11 +169,11 @@ export default {
 }
 </script>
 <style>
-/*.el-header {*/
-/*  background-color: #80b2e5;*/
-/*  color: #333;*/
-/*  line-height: 60px;*/
-/*}*/
+.el-header {
+  background-color: #80b2e5;
+  color: #333;
+  line-height: 60px;
+}
 .el-main {
   padding: 0;
   height: calc(100vh - 70px);

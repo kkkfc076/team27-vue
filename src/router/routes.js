@@ -19,7 +19,7 @@ const managerPage = [
         component: () =>
           import(
             '../page/manager/main/Maindata'
-            )
+          )
       },
       {
         path: '/apply/apply1',
