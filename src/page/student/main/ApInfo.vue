@@ -31,14 +31,19 @@
       <tr>
         <th scope="row">申请结果</th>
         <td>
-          <span v-if="APList.result">
-            <span class="el-icon-success" style="color: #009999">
+          <span v-if="APList.result===true">
+            <span class="el-icon-success" style="color: #17ce36">
               通过
             </span>
           </span>
-          <span v-else>
-            <span class="el-icon-circle-close" style="color: #FF3333">
+          <span v-else-if="APList.result===false">
+            <span class="el-icon-error" style="color: #FF3333">
               不通过
+            </span>
+          </span>
+          <span v-else-if="APList.result===null">
+            <span class="el-icon-question" style="color: #6666FF">
+              等待中
             </span>
           </span>
         </td>
