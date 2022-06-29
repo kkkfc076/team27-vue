@@ -44,8 +44,8 @@
         <span slot="title">修改密码</span>
       </el-menu-item>
       <el-menu-item index="7" @click="exit()">
-        <i class="el-icon-warning-outline"></i>
-        <span slot="title">退出登录</span>
+        <i class="el-icon-warning-outline" style="color: #FF3333"></i>
+        <span slot="title" style="color: #FF3333">退出登录</span>
       </el-menu-item>
     </el-menu>
   </el-aside>
