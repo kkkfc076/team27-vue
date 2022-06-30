@@ -9,11 +9,9 @@
         </el-dropdown>
         <span style="margin-right: 50px">寒衣补助申请系统</span>
         <i class="el-icon-date" style="font-size: 15px;color: ghostwhite"></i>
-        <span style="font-size: 15px;margin-right: 300px">当前批次为：{{batch}}</span>
+        <span style="font-size: 20px;margin-right: 300px">当前批次为：{{batch}}</span>
         <i class="el-icon-s-custom" style="font-size: 25px;color: ghostwhite"></i>
-        <span style="font-size: 25px;margin-right: 50px">职位：{{manList.mname}}</span>
-        <span style="font-size: 25px;margin-right: 50px">管理对象：{{manList.major}}</span>
-        <span style="font-size: 25px;margin-right: 50px">管理年级：{{manList.grade}}级</span>
+        <span style="font-size: 25px;margin-right: 50px">欢迎 {{manList.mname}} 登入系统</span>
       </el-header>
       <el-container>
       <el-aside :span="3" id="76" class="el-aside" >
@@ -80,6 +78,7 @@
       </el-main>
       </el-container>
     </el-container>
+    //
     <update-pwd ref="updateP"/>
   </div>
 </template>

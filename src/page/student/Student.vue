@@ -10,7 +10,7 @@
       <span>寒衣补助申请系统</span>
     </el-header>
     <el-container>
-  <el-aside :span="3">
+  <el-aside :span="3" class="el-aside">
     <h5>主菜单</h5>
     <el-menu
       default-active="2"
@@ -47,7 +47,7 @@
       </el-menu-item>
     </el-menu>
   </el-aside>
-    <el-main>
+    <el-main class="el-main">
       <router-view>
       </router-view>
     </el-main>
