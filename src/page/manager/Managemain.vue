@@ -3,15 +3,17 @@
     <el-container>
       <el-header style="text-align: center; font-size: 30px" class="el-header">
         <el-dropdown>
-          <i class="el-icon-s-custom"></i>
+          <i class="el-icon-s-claim" style="font-size: 30px;color: ghostwhite"></i>
           <el-dropdown-menu slot="dropdown">
           </el-dropdown-menu>
         </el-dropdown>
         <span style="margin-right: 50px">寒衣补助申请系统</span>
+        <i class="el-icon-date" style="font-size: 15px;color: ghostwhite"></i>
         <span style="font-size: 15px;margin-right: 300px">当前批次为：{{batch}}</span>
+        <i class="el-icon-s-custom" style="font-size: 25px;color: ghostwhite"></i>
         <span style="font-size: 25px;margin-right: 50px">职位：{{manList.mname}}</span>
-        <span style="font-size: 25px;margin-right: 50px">管理层：{{manList.major}}</span>
-        <span style="font-size: 25px;margin-right: 50px">管理年级：{{manList.grade}}</span>
+        <span style="font-size: 25px;margin-right: 50px">管理对象：{{manList.major}}</span>
+        <span style="font-size: 25px;margin-right: 50px">管理年级：{{manList.grade}}级</span>
       </el-header>
       <el-container>
       <el-aside :span="3" id="76" class="el-aside" >
