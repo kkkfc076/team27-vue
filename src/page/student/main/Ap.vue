@@ -25,7 +25,14 @@
      </tr>
      <tr>
      <th scope="row" >申请原因</th>
-     <td><el-input type="text" v-model="reason"></el-input></td>
+     <td>
+       <span v-if="matchL.flag!==0">
+         <el-input type="text" v-model="reason" placeholder="请输入理由"></el-input>
+       </span>
+       <span v-else-if="matchL.flag===0">
+         <el-input type="text" v-model="reason" :placeholder="APList.reason"></el-input>
+       </span>
+     </td>
    </tr>
    </table>
    <br>
@@ -41,6 +48,7 @@ export default {
     return {
       APList: [],
       userList: [],
+      matchL: [],
       reason: '',
       addFlag: true,
       updateFlag: true
@@ -89,12 +97,12 @@ export default {
           alert('失败')
           return false
         }
-        this.match()
       })
     },
     match () {
       this.$axios.get(`/api/applicationform/match`).then(res => {
         console.info(res.data)
+        this.matchL = res.data.data
         let obtain = res.data.data.flag
         if (obtain === 0) {
           this.addFlag = true// 为灰色
