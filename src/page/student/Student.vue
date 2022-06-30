@@ -8,6 +8,7 @@
         </el-dropdown-menu>
       </el-dropdown>
       <span>寒衣补助申请系统</span>
+      <span>当前批次为：{{batch}}</span>
     </el-header>
     <el-container>
   <el-aside :span="3">

@@ -39,8 +39,8 @@
 
 <script>
 
-import ProlongEnddate from "./component/prolongEnddate";
-import {getCurBatch} from "../../../api/api";
+import ProlongEnddate from './component/prolongEnddate'
+import {getCurBatch} from '../../../api/api'
 export default {
   name: 'batchset',
   components: {ProlongEnddate},
@@ -51,7 +51,7 @@ export default {
         startdate: '',
         enddate: ''
       },
-      batchList:{},
+      batchList: {},
       rules: {
         bid: [
           { required: true, message: '请输入批次编号', trigger: 'blur' },
@@ -66,7 +66,7 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.getBatchInfo()
   },
   methods: {
@@ -98,13 +98,17 @@ export default {
     resetForm (batchForm) {
       this.$refs[batchForm].resetFields()
     },
-    handleEdit(){
+    handleEdit () {
       this.$refs.prolong.show(this.batchList)
     },
-    getBatchInfo(){
-      getCurBatch().then(res=>{
+    getBatchInfo () {
+      getCurBatch().then(res => {
         console.info(res)
-        this.batchList=res.data
+        if (res.data != null) {
+          this.batchList = res.data
+        } else {
+          alert('请新建批次！')
+        }
       })
     }
   }

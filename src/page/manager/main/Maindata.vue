@@ -88,6 +88,7 @@
     </el-row>
   </el-card>
   <div>
+    <h1>本批次已选择寒衣</h1>
     <el-table
       :data="tableData"
       :span-method="arraySpanMethod"
