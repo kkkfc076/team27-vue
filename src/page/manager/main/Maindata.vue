@@ -90,33 +90,34 @@
   <div>
     <h1>本批次已选择寒衣</h1>
     <el-table
-      :data="tableData"
-      :span-method="arraySpanMethod"
+      :data="info"
+      :span-method="objectSpanMethod"
       border
       style="width: 100%">
       <el-table-column
-        prop="id"
-        label="ID"
+        prop="style"
+        label="款式"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="姓名">
+        prop="cname"
+        label="名称">
       </el-table-column>
       <el-table-column
-        prop="amount1"
-        sortable
-        label="数值 1">
+        prop="sex"
+        label="性别">
       </el-table-column>
       <el-table-column
-        prop="amount2"
-        sortable
-        label="数值 2">
+        prop="size"
+        label="尺码">
       </el-table-column>
       <el-table-column
-        prop="amount3"
-        sortable
-        label="数值 3">
+        prop="num"
+        label="数量">
+      </el-table-column>
+      <el-table-column
+        prop="total"
+        label="总计">
       </el-table-column>
     </el-table>
   </div>
@@ -125,18 +126,21 @@
 
 <script>
 import {applyStatistics, cloStatistics} from '../../../api/api'
+import {cloList} from '../../../api/clothes'
 
 export default {
   name: 'Maindata',
   data () {
     return {
       applys: [],
-      styles: []
+      styles: [],
+      info: []
     }
   },
   created () {
     this.ApplyStatistics()
     this.CloSatistics()
+    this.getInfo()
   },
   methods: {
     // statistics () {
@@ -153,6 +157,13 @@ export default {
       cloStatistics().then(res => {
         console.info(res)
         this.styles = res.data
+      })
+    },
+    getInfo () {
+      cloList(this.query).then(res => {
+        console.info(res)
+        this.info = res.data.records
+        this.query.total = res.data.total
       })
     }
   }

@@ -60,11 +60,10 @@
       <el-button type="primary" plain @click="dialogTableVisible=false">取消</el-button>
     </el-dialog>
 
-
   </div>
 </template>
 <script>
-  import {getStyle, getSize} from '../../../api/clothes'
+import {getStyle, getSize} from '../../../api/clothes'
 
 export default {
   data () {
@@ -93,17 +92,17 @@ export default {
         this.query.total = res.data.total
       })
     },
-    //选中某一款式
+    // 选中某一款式
     choose (value) {
       console.info(value)
       this.data1 = value
     },
-    //选中某一尺寸
+    // 选中某一尺寸
     select (value) {
       console.info(value)
       this.data2 = value
     },
-    //向后台提交选择数据,接收返回结果
+    // 向后台提交选择数据,接收返回结果
     confirm () {
       this.$axios.post('/api/applicationform/choose', this.data2).then(res => {
         console.info(res)
@@ -117,15 +116,15 @@ export default {
           })
         }
       })
-      this.dialogTableVisible=false
+      this.dialogTableVisible = false
     },
-    //从后端得到所选款式的所有尺寸,并显示弹窗
+    // 从后端得到所选款式的所有尺寸,并显示弹窗
     getSize () {
-     getSize(this.data1).then(res => {
+      getSize(this.data1).then(res => {
         console.info(res)
-        this.size=res.data.records
+        this.size = res.data.records
       })
-    this.dialogTableVisible = true
+      this.dialogTableVisible = true
     },
     pageSizeChange (value) {
       this.query.pageSize = value

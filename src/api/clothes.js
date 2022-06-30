@@ -13,5 +13,5 @@ export const deleteClothes = (clothes) => http.POST('/api/clothes/deleteClothes'
 
 // 编辑款式
 export const clothesUpdate = (clothes) => http.POST('/api/clothes/update', clothes)
-//获取寒衣尺码
+// 获取寒衣尺码
 export const getSize = (clothes) => http.GET('/api/clothes/styleStatistics', clothes)
