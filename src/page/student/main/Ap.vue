@@ -25,7 +25,7 @@
      </tr>
      <tr>
      <th scope="row" >申请原因</th>
-     <td><el-input type="text" v-model="reason" :placeholder="APList.reason"></el-input></td>
+     <td><el-input type="text" v-model="reason"></el-input></td>
    </tr>
    </table>
    <br>
@@ -39,11 +39,11 @@ export default {
   name: 'Ap',
   data () {
     return {
-      APList:[],
+      APList: [],
       userList: [],
       reason: '',
       addFlag: true,
-      updateFlag:true
+      updateFlag: true
     }
   },
   created () {
@@ -52,10 +52,10 @@ export default {
     this.getAP()
   },
   methods: {
-    getAP(){
-      this.$axios.get('api/applicationform/getAPInfo').then(res=>{
+    getAP () {
+      this.$axios.get('api/applicationform/getAPInfo').then(res => {
         console.info(res.data)
-        this.APList=res.data.data
+        this.APList = res.data.data
       })
     },
     getInfo () {
@@ -70,11 +70,11 @@ export default {
         console.info(res.data.data)
         if (res.data.data.flag === 2) {
           this.$alert('修改申请理由成功', '修改结果', {
-            confirmButtonText: '确定',
+            confirmButtonText: '确定'
           })
         } else {
           this.$alert('修改申请理由失败', '修改结果', {
-            confirmButtonText: '确定',
+            confirmButtonText: '确定'
           })
         }
       })
@@ -92,19 +92,18 @@ export default {
         this.match()
       })
     },
-    match(){
+    match () {
       this.$axios.get(`/api/applicationform/match`).then(res => {
         console.info(res.data)
         let obtain = res.data.data.flag
-        if(obtain == 0){
-          this.addFlag=true;//为灰色
-          this.updateFlag=false;
-        }else{
-          this.addFlag=false;
-          this.updateFlag=true;
+        if (obtain === 0) {
+          this.addFlag = true// 为灰色
+          this.updateFlag = false
+        } else {
+          this.addFlag = false
+          this.updateFlag = true
         }
       })
-
     }
   }
 }
