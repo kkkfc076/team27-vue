@@ -1,14 +1,17 @@
 <template>
   <div>
     <el-container>
-      <el-header style="text-align: left; font-size: 20px" class="el-header">
+      <el-header style="text-align: center; font-size: 30px" class="el-header">
         <el-dropdown>
-          <i class="el-icon-s-custom" style="margin-right: 15px"></i>
+          <i class="el-icon-s-custom"></i>
           <el-dropdown-menu slot="dropdown">
           </el-dropdown-menu>
         </el-dropdown>
-        <span>寒衣补助申请系统</span>
-        <span>当前批次为：{{batch}}</span>
+        <span style="margin-right: 50px">寒衣补助申请系统</span>
+        <span style="font-size: 15px;margin-right: 300px">当前批次为：{{batch}}</span>
+        <span style="font-size: 25px;margin-right: 50px">职位：{{manList.mname}}</span>
+        <span style="font-size: 25px;margin-right: 50px">管理层：{{manList.major}}</span>
+        <span style="font-size: 25px;margin-right: 50px">管理年级：{{manList.grade}}</span>
       </el-header>
       <el-container>
       <el-aside :span="3" id="76" class="el-aside" >
@@ -87,12 +90,14 @@ export default {
   data: function () {
     return {
       submissionFlag: false,
-      batch: ''
+      batch: '',
+      manList: []
     }
   },
   components: {UpdatePwd},
   created () {
     this.getBatch()
+    this.getMan()
   },
   methods: {
     handleOpen (key, keyPath) {
@@ -144,6 +149,12 @@ export default {
           this.submissionFlag = true
           this.batch = '当前不在任何批次，您可以新建批次！'
         }
+      })
+    },
+    getMan () {
+      this.$axios.get(`/api/manager/getMan`).then(res => {
+        console.info(res.data)
+        this.manList = res.data.data
       })
     }
   }
