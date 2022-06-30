@@ -65,8 +65,8 @@
             <span>修改密码</span>
           </el-menu-item>
           <el-menu-item index="6" @click="back()">
-            <i class="el-icon-document"></i>
-            <span>退出登录</span>
+            <i class="el-icon-warning-outline" style="color: #FF3333"></i>
+            <span style="color: #FF3333">退出登录</span>
           </el-menu-item>
         </el-menu>
       </el-aside>

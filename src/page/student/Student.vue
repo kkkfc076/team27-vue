@@ -5,9 +5,6 @@
       <el-dropdown>
         <i class="el-icon-s-custom" style="margin-right: 15px"></i>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>查看</el-dropdown-item>
-          <el-dropdown-item>新增</el-dropdown-item>
-          <el-dropdown-item>删除</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
       <span>寒衣补助申请系统</span>
@@ -51,7 +48,8 @@
     </el-menu>
   </el-aside>
     <el-main>
-      <router-view></router-view>
+      <router-view>
+      </router-view>
     </el-main>
     </el-container>
   </el-container>
