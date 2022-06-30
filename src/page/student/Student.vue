@@ -115,7 +115,7 @@ export default {
           console.info(res.data.flag)
           this.batch = res.data.flag
         } else {
-          this.submissionFlag=true;
+          this.submissionFlag = true
           this.batch = '当前不属于申请时间'
         }
       })
