@@ -36,8 +36,9 @@
    </tr>
    </table>
    <br>
-       <button type="primary" @click="addReason"  :disabled="addFlag">提交申请(首次提交）</button>
-       <button type="primary" @click="updateReason" :disabled="updateFlag">修改申请（提交过）</button>
+   <button type="primary" @click="addReason"  :disabled="addFlag">提交申请(首次提交）</button>
+   <button type="primary" @click="updateReason" :disabled="updateFlag">修改申请（提交过）</button>
+   <button @click="shuaxin">刷新</button>
  </div>
 </template>
 
@@ -91,11 +92,14 @@ export default {
       var reason = this.reason
       this.$axios.post(`/api/applicationform/saveReason`, {reason}).then(res => {
         console.info(res.data.data)
-        if (res.data.data.id !== null) {
-          alert('成功')
+        if (res.data.data.reason !== null) {
+          this.$alert('修改申请理由成功', '修改结果', {
+            confirmButtonText: '确定'
+          })
         } else {
-          alert('失败')
-          return false
+          this.$alert('修改申请理由失败', '修改结果', {
+            confirmButtonText: '确定'
+          })
         }
       })
     },
@@ -112,6 +116,9 @@ export default {
           this.updateFlag = true
         }
       })
+    },
+    shuaxin () {
+      this.$router.go(0)
     }
   }
 }
