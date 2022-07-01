@@ -3,9 +3,9 @@
   <div style="margin: 10px 0;"></div>
   <el-row :gutter="1" align="left">
     <el-col :span="4"><div class="grid-content bg-purple">
-  <el-select v-model="value1" multiple placeholder="请选择批次" >
+  <el-select v-model="value1"  placeholder="请选择批次" >
     <el-option
-      v-for="item in options"
+      v-for="item in batch"
       :key="item.value"
       :label="item.label"
       :value="item.value">
@@ -16,12 +16,11 @@
     <el-col :span="4"><div class="grid-content bg-purple">
   <el-select
     v-model="value2"
-    multiple
     collapse-tags
     style="margin-left: 20px;"
     placeholder="请选择学院">
     <el-option
-      v-for="item in options"
+      v-for="item in college"
       :key="item.value"
       :label="item.label"
       :value="item.value">
@@ -125,7 +124,7 @@
 </template>
 
 <script>
-  import {applyStatistics, cloStatistics, appExport, verify} from '../../../api/api'
+import {applyStatistics, cloStatistics, appExport, verify,getAllBatch} from '../../../api/api'
 import {cloList} from '../../../api/clothes'
 
 export default {
@@ -133,6 +132,25 @@ export default {
   data () {
     return {
       merageArr: [],
+      batch:[],
+      college: [{
+        value: '1',
+        label: '计算机学院'
+      }, {
+        value: '2',
+        label: '外国语学院'
+      }, {
+        value: '3',
+        label: '历史学院'
+      }, {
+        value: '4',
+        label: '经济学院'
+      }, {
+        value: '5',
+        label: '马克思主义学院'
+      }],
+      value2: [],
+      value1: [],
       meragePos: 0,
       applys: [],
       styles: [],
@@ -140,6 +158,7 @@ export default {
     }
   },
   created () {
+    this.getallB()
     this.ApplyStatistics()
     this.CloSatistics()
     this.getInfo()
@@ -150,6 +169,16 @@ export default {
       applyStatistics().then(res => {
         console.info(res)
         this.applys = res.data
+      })
+    },
+    getallB () {
+      getAllBatch().then(res => {
+        let result = res.data
+        result.forEach(element => {
+          this.batch.push({label: element.bid, value: element.id})
+        })
+      }).catch(error => {
+        console.log(error)
       })
     },
     exportExcel () {

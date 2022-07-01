@@ -1,6 +1,6 @@
 <template>
     <el-card>
-      <div>申请人{{stuInfo.sname}}同学的个人信息</div>
+      <div style="font-size: large">申请人资料</div>
       <el-descriptions title="" direction="vertical" :column="3" border>
         <el-descriptions-item label="申请表编号" >{{ query.id}}</el-descriptions-item>
         <el-descriptions-item label="申请批次">{{appInfo.batKey}}</el-descriptions-item>
@@ -11,21 +11,21 @@
         <el-descriptions-item label="学生姓名">{{stuInfo.sname}}</el-descriptions-item>
         <el-descriptions-item label="申请理由">{{ appInfo.reason }}</el-descriptions-item>
       </el-descriptions>
-      <div style="margin: 10px 0;" >审核信息</div>
+      <div style="margin: 10px 0;font-size: large" >审核信息</div>
       <el-descriptions title="" direction="vertical" :column="3" border>
         <el-descriptions-item label="审核人姓名" >{{ manInfo.mname}}</el-descriptions-item>
         <el-descriptions-item label="审核人账号">{{manInfo.mankey}}</el-descriptions-item>
         <el-descriptions-item label="审核结果" >{{manInfo.result}}</el-descriptions-item>
         <el-descriptions-item label="审核人负责年级" >{{manInfo.grade}}</el-descriptions-item>
-        <el-descriptions-item label="审核通过时间" >{{ manInfo.time }}</el-descriptions-item>
+        <el-descriptions-item label="审核结果提交时间" >{{ manInfo.time }}</el-descriptions-item>
         <el-descriptions-item label="审核等级"  >{{manInfo.mlevel}}</el-descriptions-item>
 <!--        <el-descriptions-item label="学生姓名">{{stuInfo.sname}}</el-descriptions-item>-->
         <el-descriptions-item label="审核未通过原因(如通过则忽略)">{{ manInfo.reason }}</el-descriptions-item>
       </el-descriptions>
-      <div style="margin: 30px 0;" ></div>
+      <div style="margin: 10px 0;" ></div>
       <el-col >
         <el-button type="primary" @click="return1" size="medium">返回</el-button>
-        <div style="margin: 30px 0;" ></div>
+        <div style="margin: 10px 0;" ></div>
         </el-col>
 <!--      <div style="margin: 20px 0;"></div>-->
       </el-card>
