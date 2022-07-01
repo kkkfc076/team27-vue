@@ -92,7 +92,7 @@
     <h1>本批次已选择寒衣</h1>
     <el-table
       :data="info"
-      :span-method="objectSpanMethod"
+      :span-method="arraySpanMethod"
       border
       style="width: 100%">
       <el-table-column
@@ -133,18 +133,19 @@ export default {
   name: 'Maindata',
   data () {
     return {
+      merageArr: [],
+      meragePos: 0,
       applys: [],
       styles: [],
-      info: [],
-      spanList: [],
-      number: 0
+      info: []
     }
   },
   created () {
     this.ApplyStatistics()
     this.CloSatistics()
     this.getInfo()
-    this.spanArr()
+    // this.spanArr()
+    this.merage(this.info)
   },
   methods: {
     ApplyStatistics () {
@@ -163,65 +164,42 @@ export default {
       cloList(this.query).then(res => {
         console.info(res)
         this.info = res.data.records
+        this.merage(this.info)
       })
     },
-    spanArr () {
-      let contactDot = this.info[0].style
-      let spanArr = []
-      let numberNow = this.number
-      let data = this.info
-      data.forEach((item, index) => {
-        if (item.style === contactDot) {
-          numberNow += 1
+    merage (tableData) {
+      this.merageInit()
+      for (var i = 0; i < tableData.length; i++) {
+        if (i === 0) {
+          // 第一行正常显示 必须存在
+          this.merageArr.push(1)
+          this.meragePos = 0
         } else {
-          spanArr.push(numberNow)
-          contactDot = item.style// 重新赋值标识
-          while (numberNow > 1) { // 赋值0
-            spanArr.push(0)
-            numberNow -= 1
-          }
-        } if (index === data.length - 1) { // 到最后一个了，把没有push的项处理完
-          spanArr.push(numberNow)
-          contactDot = item.style
-          while (numberNow > 1) {
-            spanArr.push(0)
-            numberNow -= 1
+          // 判断当前元素与上一个元素是否相同 根据是否合并的id
+          if (tableData[i].style === tableData[i - 1].style) {
+            this.merageArr[this.meragePos] += 1
+            this.merageArr.push(0)
+          } else {
+            this.merageArr.push(1)
+            this.meragePos = i
           }
         }
-      })
-      this.spanList = [3, 0, 0, 2, 0, 0, 2, 0, 0, 1, 1]
-      console.log(spanArr)
+      }
+    },
+    merageInit () {
+      this.merageArr = []
+      this.meragePos = 0
+    },
+    arraySpanMethod ({ row, column, rowIndex, columnIndex }) {
+      if (columnIndex < 3 || columnIndex === 5) {
+        const _row = this.merageArr[rowIndex]
+        const _col = _row > 0 ? 1 : 0 // 如果被合并了_row=0则它这个列需要取消
+        return {
+          rowspan: _row,
+          colspan: _col
+        }
+      }
     }
-    // objectSpanMethod ({ row, column, rowIndex, columnIndex }) {
-    //   if (columnIndex === 0 || columnIndex === 1 || columnIndex === 2) {
-    //     if (this.spanList[rowIndex] === 0) {
-    //       return {
-    //         rowspan: 0,
-    //         colspan: 0
-    //       }
-    //     } else {
-    //       return {
-    //         rowspan: this.spanList[rowIndex],
-    //         colspan: 1
-    //       }
-    //     }
-    //   }
-    // }
-    // objectSpanMethod ({row, column, rowIndex, columnIndex}) {
-    //   if (columnIndex === 0) {
-    //     if (rowIndex % 2 === 0) {
-    //       return {
-    //         rowspan: 2,
-    //         colspan: 1
-    //       }
-    //     } else {
-    //       return {
-    //         rowspan: 0,
-    //         colspan: 0
-    //       }
-    //     }
-    //   }
-    // }
   }
 }
 </script>
