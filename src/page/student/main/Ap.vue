@@ -16,6 +16,14 @@
        <td>{{userList.sex}}</td>
      </tr>
      <tr>
+       <th scope="row">年级</th>
+       <td>
+         {{userList.grade}}级
+         <span v-if="B===0">（新生可不填理由）</span>
+         <span v-else >（不为新生，理由不可为空）</span>
+       </td>
+     </tr>
+     <tr>
        <th scope="row">贫困等级</th>
        <td>{{userList.plevel}}</td>
      </tr>
@@ -47,6 +55,7 @@ export default {
   name: 'Ap',
   data () {
     return {
+      B: '',
       APList: [],
       userList: [],
       matchL: [],
@@ -59,6 +68,7 @@ export default {
     this.getInfo()
     this.match()
     this.getAP()
+    this.getBInfo()
   },
   methods: {
     getAP () {
@@ -119,6 +129,12 @@ export default {
     },
     shuaxin () {
       this.$router.go(0)
+    },
+    getBInfo () {
+      this.$axios.get('api/student/getBInfo').then(res => {
+        console.info(res.data)
+        this.B = res.data.data
+      })
     }
   }
 }
