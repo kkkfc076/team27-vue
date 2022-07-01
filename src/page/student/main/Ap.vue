@@ -16,20 +16,15 @@
        <td>{{userList.sex}}</td>
      </tr>
      <tr>
-       <th scope="row">年级</th>
-       <td>
-         {{userList.grade}}级
-         <span v-if="B===0" style="font-size: 10px;color: #80b2e5" class="el-icon-info">（新生可不填理由）</span>
-         <span v-else style="font-size: 10px;color: #FF3333" class="el-icon-info">（不为新生，理由不可为空）</span>
-       </td>
-     </tr>
-     <tr>
        <th scope="row">贫困等级</th>
        <td>{{userList.plevel}}</td>
      </tr>
      <tr>
        <th scope="row">贫困认定时间</th>
-       <td>{{userList.pyear}}</td>
+       <td>{{userList.pyear}}
+         <span v-if="B===0" style="font-size: 10px;color: #80b2e5" class="el-icon-info">（新生可不填理由）</span>
+         <span v-else style="font-size: 10px;color: #FF3333" class="el-icon-info">（不为新生，理由不可为空）</span>
+       </td>
      </tr>
      <tr>
      <th scope="row" >申请原因</th>
