@@ -174,6 +174,7 @@ export default {
 }
 .el-main {
   padding: 0;
+  background-image: url("https://t7.baidu.com/it/u=2203821976,1128774492&fm=193");
   height: calc(100vh - 70px);
   width: auto;
 }
