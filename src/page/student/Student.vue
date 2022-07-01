@@ -1,9 +1,9 @@
 <template>
   <div>
   <el-container>
-    <el-header style="text-align: left; font-size: 20px" class="el-header">
+    <el-header style="text-align: center; font-size: 25px" class="el-header">
       <el-dropdown>
-        <i class="el-icon-s-custom" style="margin-right: 15px"></i>
+        <i class="el-icon-s-claim" style="font-size: 25px;color: ghostwhite"></i>
         <el-dropdown-menu slot="dropdown">
         </el-dropdown-menu>
       </el-dropdown>
