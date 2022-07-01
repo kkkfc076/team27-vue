@@ -164,7 +164,7 @@ export default {
 
 <style scoped>
 .el-header {
-  background-color: #80b2e5;
+  background-color: #2093fd;
   color: #333;
   line-height: 60px;
 }
