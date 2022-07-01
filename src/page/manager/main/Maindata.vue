@@ -32,7 +32,10 @@
     <el-button type="primary" @click="searchData">查询</el-button>
     </div></el-col>
     <el-col :span="1"><div class="grid-content bg-purple">
-    <el-button type="primary" @click="exportExcel">导出数据</el-button>
+    <el-button type="primary" @click="exportExcel">导出汇总表</el-button>
+  </div></el-col>
+    <el-col :span="4"><div class="grid-content bg-purple">
+      <el-button type="primary" @click="verify">导出审核表</el-button>
     </div></el-col>
   </el-row>
   <h1 align="left" style="font-size: medium">申请统计</h1>
@@ -116,17 +119,13 @@
         prop="num"
         label="数量">
       </el-table-column>
-      <el-table-column
-        prop="total"
-        label="总计">
-      </el-table-column>
     </el-table>
   </div>
 </el-card>
 </template>
 
 <script>
-import {applyStatistics, cloStatistics} from '../../../api/api'
+import {applyStatistics, cloStatistics,appExport} from '../../../api/api'
 import {cloList} from '../../../api/clothes'
 
 export default {
@@ -144,7 +143,6 @@ export default {
     this.ApplyStatistics()
     this.CloSatistics()
     this.getInfo()
-    // this.spanArr()
     this.merage(this.info)
   },
   methods: {

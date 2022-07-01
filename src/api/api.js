@@ -1,8 +1,10 @@
 import http from '../tools/http/http'
 
 export const getBatch = () => http.GET('/api/manager/getBatch')
+//汇总表
 export const appExport = () => http.EXPORT('/api/applicationform/export')
-
+//审核表
+export const verify = () => http.EXPORT('/api/applicationform/verify')
 export const getCurBatch = () => http.GET('/api/batch/getBatch')
 
 export const prolongBatch = (batch) => http.POST('/api/batch/updateBatch', batch)

@@ -28,10 +28,6 @@
           prop="sex"
           label="性别">
         </el-table-column>
-        <el-table-column
-          prop="size"
-          label="尺码">
-        </el-table-column>
       </el-table>
       <!-- 底部换页 -->
       <el-pagination

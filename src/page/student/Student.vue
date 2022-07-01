@@ -3,7 +3,7 @@
   <el-container>
     <el-header style="text-align: center; font-size: 25px" class="el-header">
       <el-dropdown>
-        <i class="el-icon-s-claim" style="font-size: 25px;color: ghostwhite"></i>
+        <i class="el-icon-s-custom" style="margin-right: 15px"></i>
         <el-dropdown-menu slot="dropdown">
         </el-dropdown-menu>
       </el-dropdown>
