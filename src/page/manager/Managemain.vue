@@ -1,6 +1,19 @@
 <template>
   <div>
     <el-container>
+      <el-header style="text-align: center; font-size: 30px" class="el-header">
+        <el-dropdown>
+          <i class="el-icon-s-claim" style="font-size: 30px;color: ghostwhite"></i>
+          <el-dropdown-menu slot="dropdown">
+          </el-dropdown-menu>
+        </el-dropdown>
+        <span style="margin-right: 50px">寒衣补助申请系统</span>
+        <i class="el-icon-date" style="font-size: 15px;color: ghostwhite"></i>
+        <span style="font-size: 20px;margin-right: 300px">当前批次为：{{batch}}</span>
+        <i class="el-icon-s-custom" style="font-size: 25px;color: ghostwhite"></i>
+        <span style="font-size: 25px;margin-right: 50px">欢迎 {{manList.mname}} 登入系统</span>
+      </el-header>
+      <el-container>
       <el-aside :span="3" id="76" class="el-aside" >
         <h5>主菜单</h5>
         <el-menu
@@ -8,7 +21,7 @@
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose">
-          <el-menu-item index="2" @click="mainData()">
+          <el-menu-item index="7" @click="mainData()">
             <i class="el-icon-data-board"></i>
             <span>申请总览</span>
           </el-menu-item>
@@ -50,28 +63,22 @@
               <el-menu-item index="4-2" @click="addstudent()">学生导入</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-<!--          <el-menu-item index="4" @click="whitelist()">-->
-<!--            <i class="el-icon-document"></i>-->
-<!--            <span>白名单设置</span>-->
-<!--          </el-menu-item>-->
           <el-menu-item index="5" @click="handleEdit()">
             <i class="el-icon-document"></i>
             <span>修改密码</span>
           </el-menu-item>
           <el-menu-item index="6" @click="back()">
-            <i class="el-icon-document"></i>
-            <span>退出登录</span>
+            <i class="el-icon-warning-outline" style="color: #FF3333"></i>
+            <span style="color: #FF3333">退出登录</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main class="el-main">
-        <tr>
-          <th scope="row">当前批次为：</th>
-          <td>{{batch}}</td>
-        </tr>
         <router-view></router-view>
       </el-main>
+      </el-container>
     </el-container>
+    //
     <update-pwd ref="updateP"/>
   </div>
 </template>
@@ -84,12 +91,14 @@ export default {
   data: function () {
     return {
       submissionFlag: false,
-      batch: ''
+      batch: '',
+      manList: []
     }
   },
   components: {UpdatePwd},
   created () {
     this.getBatch()
+    this.getMan()
   },
   methods: {
     handleOpen (key, keyPath) {
@@ -98,8 +107,8 @@ export default {
     handleClose (key, keyPath) {
       console.log(key, keyPath)
     },
-    mainData(){
-      this.$router.push({name:'Maindata'})
+    mainData () {
+      this.$router.push({name: 'Maindata'})
     },
     aplly1 () {
       this.$router.push({name: 'apply1'})
@@ -138,9 +147,15 @@ export default {
           console.info(res.data.flag)
           this.batch = res.data.flag
         } else {
-          this.submissionFlag=true;
+          this.submissionFlag = true
           this.batch = '当前不在任何批次，您可以新建批次！'
         }
+      })
+    },
+    getMan () {
+      this.$axios.get(`/api/manager/getMan`).then(res => {
+        console.info(res.data)
+        this.manList = res.data.data
       })
     }
   }
@@ -148,11 +163,11 @@ export default {
 </script>
 
 <style scoped>
-/*.el-header {*/
-/*  background-color: #80b2e5;*/
-/*  color: #333;*/
-/*  line-height: 60px;*/
-/*}*/
+.el-header {
+  background-color: #80b2e5;
+  color: #333;
+  line-height: 60px;
+}
 .el-aside {
   height: calc(100% - 20px);
   overflow: hidden;

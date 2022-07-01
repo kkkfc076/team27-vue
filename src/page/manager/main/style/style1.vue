@@ -7,6 +7,9 @@
         <el-form-item label="款式编号">
           <el-input v-model="query.style" placeholder="款式编号"></el-input>
         </el-form-item>
+        <el-form-item label="批次编号">
+          <el-input v-model="query.batKey" placeholder="批次编号"></el-input>
+        </el-form-item>
         <el-form-item label="性别">
           <el-select v-model="query.sex" placeholder="性别">
             <el-option label="男" value="男"></el-option>

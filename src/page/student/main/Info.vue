@@ -7,7 +7,7 @@
     <el-descriptions-item label="学院">{{info.major}}</el-descriptions-item>
     <el-descriptions-item label="年级"> {{info.grade}}</el-descriptions-item>
     <el-descriptions-item label="班级">{{info.sclass}}</el-descriptions-item>
-    <el-descriptions-item label="贫困等级">{{info.pleve}}</el-descriptions-item>
+    <el-descriptions-item label="贫困等级">{{info.plevel}}</el-descriptions-item>
     <el-descriptions-item label="贫困认定学年">{{info.pyear}}</el-descriptions-item>
   </el-descriptions>
 

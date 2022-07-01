@@ -31,14 +31,19 @@
       <tr>
         <th scope="row">申请结果</th>
         <td>
-          <span v-if="APList.result">
-            <span class="el-icon-circle-check">
+          <span v-if="APList.result===true">
+            <span class="el-icon-success" style="color: #17ce36">
               通过
             </span>
           </span>
-          <span v-else>
-            <span class="el-icon-circle-close">
+          <span v-else-if="APList.result===false">
+            <span class="el-icon-error" style="color: #FF3333">
               不通过
+            </span>
+          </span>
+          <span v-else-if="APList.result===null">
+            <span class="el-icon-question" style="color: #6666FF">
+              等待中
             </span>
           </span>
         </td>
@@ -66,8 +71,8 @@ export default {
   data () {
     return {
       userList: [],
-      APList:[],
-      CList:[]
+      APList: [],
+      CList: []
     }
   },
   created () {
@@ -83,16 +88,16 @@ export default {
         this.userList = res.data.data
       })
     },
-    getAP(){
-      this.$axios.get('api/applicationform/getAPInfo').then(res=>{
+    getAP () {
+      this.$axios.get('api/applicationform/getAPInfo').then(res => {
         console.info(res.data)
-        this.APList=res.data.data
+        this.APList = res.data.data
       })
     },
-    getCInfo(){
-      this.$axios.get('api/clothes/getCInfo').then(res=>{
+    getCInfo () {
+      this.$axios.get('api/clothes/getCInfo').then(res => {
         console.info(res.data)
-        this.CList=res.data.data
+        this.CList = res.data.data
       })
     }
   }

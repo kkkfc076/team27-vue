@@ -18,8 +18,8 @@ const managerPage = [
         name: 'Maindata',
         component: () =>
           import(
-            '../page/manager/Maindata'
-            )
+            '../page/manager/main/Maindata'
+          )
       },
       {
         path: '/apply/apply1',
@@ -94,15 +94,7 @@ const managerPage = [
           import(
             '../page/manager/main/white/Addstudent'
           )
-      },
-      {
-        path: '/dataStatistics',
-        name: 'dataStatistics',
-        component: () =>
-          import(
-            '../page/manager/main/dataStatistics'
-            )
-      },
+      }
     ]
   }
 ]
@@ -157,4 +149,5 @@ const studentPage = [
     ]
   }
 ]
+
 export default [...loginPage, ...managerPage, ...studentPage]

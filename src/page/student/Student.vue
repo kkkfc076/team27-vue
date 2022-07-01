@@ -1,18 +1,17 @@
 <template>
   <div>
   <el-container>
-<!--    <el-header style="text-align: left; font-size: 20px" class="el-header">-->
-<!--      <el-dropdown>-->
-<!--        <i class="el-icon-s-custom" style="margin-right: 15px"></i>-->
-<!--        <el-dropdown-menu slot="dropdown">-->
-<!--          <el-dropdown-item>查看</el-dropdown-item>-->
-<!--          <el-dropdown-item>新增</el-dropdown-item>-->
-<!--          <el-dropdown-item>删除</el-dropdown-item>-->
-<!--        </el-dropdown-menu>-->
-<!--      </el-dropdown>-->
-<!--      <span>寒衣补助申请系统</span>-->
-<!--    </el-header>-->
-  <el-aside :span="3" >
+    <el-header style="text-align: left; font-size: 20px" class="el-header">
+      <el-dropdown>
+        <i class="el-icon-s-custom" style="margin-right: 15px"></i>
+        <el-dropdown-menu slot="dropdown">
+        </el-dropdown-menu>
+      </el-dropdown>
+      <span>寒衣补助申请系统</span>
+      <span>当前批次为：{{batch}}</span>
+    </el-header>
+    <el-container>
+  <el-aside :span="3" class="el-aside">
     <h5>主菜单</h5>
     <el-menu
       default-active="2"
@@ -44,14 +43,16 @@
         <span slot="title">修改密码</span>
       </el-menu-item>
       <el-menu-item index="7" @click="exit()">
-        <i class="el-icon-warning-outline"></i>
-        <span slot="title">退出登录</span>
+        <i class="el-icon-warning-outline" style="color: #FF3333"></i>
+        <span slot="title" style="color: #FF3333">退出登录</span>
       </el-menu-item>
     </el-menu>
   </el-aside>
-    <el-main>
-      <router-view></router-view>
+    <el-main class="el-main">
+      <router-view>
+      </router-view>
     </el-main>
+    </el-container>
   </el-container>
     <!-- 修改密码弹出框 -->
     <el-dialog title="修改密码" :visible.sync="dialogFormVisible">
@@ -115,7 +116,7 @@ export default {
           console.info(res.data.flag)
           this.batch = res.data.flag
         } else {
-          this.submissionFlag=true;
+          this.submissionFlag = true
           this.batch = '当前不属于申请时间'
         }
       })
@@ -167,11 +168,11 @@ export default {
 }
 </script>
 <style>
-/*.el-header {*/
-/*  background-color: #80b2e5;*/
-/*  color: #333;*/
-/*  line-height: 60px;*/
-/*}*/
+.el-header {
+  background-color: #80b2e5;
+  color: #333;
+  line-height: 60px;
+}
 .el-main {
   padding: 0;
   height: calc(100vh - 70px);

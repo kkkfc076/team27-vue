@@ -1,6 +1,9 @@
 <template>
   <el-card>
     <el-form :inline="true" class="demo-form-inline">
+      <el-form-item label="按权限查询">
+        <el-input v-model="query.permission" placeholder="按权限查询"></el-input>
+      </el-form-item>
       <el-form-item label="管理员等级">
         <el-select v-model="query.mlevel" placeholder="管理员等级">
           <el-option label="学校" value="1"></el-option>

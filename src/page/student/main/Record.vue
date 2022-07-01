@@ -7,6 +7,10 @@
     border
     style="width: 100%">
     <el-table-column
+      prop="aid"
+      label="申请编号">
+    </el-table-column>
+    <el-table-column
       prop="batKey"
       label="批次">
     </el-table-column>
@@ -27,8 +31,15 @@
       </template>
     </el-table-column>
   </el-table>
-
-    <el-dialog title="查看详情" :visible.sync="dialogFormVisible" >
+    <span v-if="List===null">
+       <el-dialog title="暂无详情" :visible.sync="dialogFormVisible" >
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogFormVisible = false" >确 定</el-button>
+      </div>
+    </el-dialog>
+    </span>
+    <span v-else>
+      <el-dialog title="查看详情" :visible.sync="dialogFormVisible" >
       <table width="700" border="1" align="center">
         <tr>
           <th scope="row">款式名称</th>
@@ -52,9 +63,11 @@
         </tr>
       </table>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+        <el-button type="primary" @click="dialogFormVisible = false" >确 定</el-button>
       </div>
     </el-dialog>
+    </span>
+
   </div>
 </template>
 
