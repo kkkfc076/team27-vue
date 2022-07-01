@@ -31,7 +31,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="12" :offset="6">
-          <el-form-item label="图片" prop="picture">
+          <el-form-item label="图片" prop="picture" style="background: rgba(248,248,255,0.5)">
             <el-upload
               class="avatar-uploader"
               action="/api/file/upload"
