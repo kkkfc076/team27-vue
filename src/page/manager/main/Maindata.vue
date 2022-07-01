@@ -6,9 +6,9 @@
   <el-select v-model="value1"  placeholder="请选择批次" >
     <el-option
       v-for="item in batch"
-      :key="item.value"
+      :key="item.label"
       :label="item.label"
-      :value="item.value">
+      :value="item.label">
     </el-option>
 
   </el-select>
@@ -134,20 +134,20 @@ export default {
       merageArr: [],
       batch:[],
       college: [{
-        value: '1',
+        value: '计算机',
         label: '计算机学院'
       }, {
-        value: '2',
-        label: '外国语学院'
+        value: '外国语',
+        label: '外国语'
       }, {
-        value: '3',
-        label: '历史学院'
+        value: '历史',
+        label: '历史'
       }, {
-        value: '4',
-        label: '经济学院'
+        value: '经济',
+        label: '经济'
       }, {
-        value: '5',
-        label: '马克思主义学院'
+        value: '马哲',
+        label: '马哲'
       }],
       value2: [],
       value1: [],
@@ -170,6 +170,10 @@ export default {
         console.info(res)
         this.applys = res.data
       })
+    },
+    searchData(){
+      console.info(this.value1)
+      console.info(this.value2)
     },
     getallB () {
       getAllBatch().then(res => {
