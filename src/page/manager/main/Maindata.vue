@@ -135,19 +135,18 @@ export default {
     return {
       applys: [],
       styles: [],
-      info: []
+      info: [],
+      spanList: [],
+      number: 0
     }
   },
   created () {
     this.ApplyStatistics()
     this.CloSatistics()
     this.getInfo()
+    this.spanArr()
   },
   methods: {
-    // statistics () {
-    //   this.ApplyStatistics
-    //   this.CloSatistics
-    // },
     ApplyStatistics () {
       applyStatistics().then(res => {
         console.info(res)
@@ -164,9 +163,50 @@ export default {
       cloList(this.query).then(res => {
         console.info(res)
         this.info = res.data.records
-        this.query.total = res.data.total
       })
+    },
+    spanArr () {
+      let contactDot = this.info[0].style
+      let spanArr = []
+      let numberNow = this.number
+      let data = this.info
+      data.forEach((item, index) => {
+        if (item.style === contactDot) {
+          numberNow += 1
+        } else {
+          spanArr.push(numberNow)
+          contactDot = item.style// 重新赋值标识
+          while (numberNow > 1) { // 赋值0
+            spanArr.push(0)
+            numberNow -= 1
+          }
+        } if (index === data.length - 1) { // 到最后一个了，把没有push的项处理完
+          spanArr.push(numberNow)
+          contactDot = item.style
+          while (numberNow > 1) {
+            spanArr.push(0)
+            numberNow -= 1
+          }
+        }
+      })
+      this.spanList = [3, 0, 0, 2, 0, 0, 2, 0, 0, 1, 1]
+      console.log(spanArr)
     }
+    // objectSpanMethod ({ row, column, rowIndex, columnIndex }) {
+    //   if (columnIndex === 0 || columnIndex === 1 || columnIndex === 2) {
+    //     if (this.spanList[rowIndex] === 0) {
+    //       return {
+    //         rowspan: 0,
+    //         colspan: 0
+    //       }
+    //     } else {
+    //       return {
+    //         rowspan: this.spanList[rowIndex],
+    //         colspan: 1
+    //       }
+    //     }
+    //   }
+    // }
     // objectSpanMethod ({row, column, rowIndex, columnIndex}) {
     //   if (columnIndex === 0) {
     //     if (rowIndex % 2 === 0) {

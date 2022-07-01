@@ -78,7 +78,6 @@
       </el-main>
       </el-container>
     </el-container>
-    //
     <update-pwd ref="updateP"/>
   </div>
 </template>
