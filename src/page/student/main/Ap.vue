@@ -21,16 +21,17 @@
      </tr>
      <tr>
        <th scope="row">贫困认定时间</th>
-       <td>{{userList.pyear}}
-         <span v-if="B===0" style="font-size: 10px;color: #80b2e5" class="el-icon-info">（新生可不填理由）</span>
-         <span v-else style="font-size: 10px;color: #FF3333" class="el-icon-info">（不为新生，理由不可为空）</span>
-       </td>
+       <td>{{userList.pyear}}</td>
      </tr>
      <tr>
      <th scope="row" >申请原因</th>
      <td>
        <span v-if="matchL.flag!==0">
-         <el-input type="text" v-model="reason" placeholder="请输入理由"></el-input>
+         <span v-if="B===0"><el-input type="text" v-model="reason" placeholder="新生可不填写理由"></el-input></span>
+          <span v-else-if="B===2">
+            <el-input type="text" v-model="reason" placeholder="不为新生，理由为空可能无法通过申请">
+            </el-input>
+          </span>
        </span>
        <span v-else-if="matchL.flag===0">
          <el-input type="text" v-model="reason" :placeholder="APList.reason"></el-input>
