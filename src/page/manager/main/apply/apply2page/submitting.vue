@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import {getApperInfo, getsAppInfo, tempsaveReson, approve,disapprove} from '../../../../../api/waitforcheckList'
+import {getApperInfo, getsAppInfo, tempsaveReson, approve, disapprove} from '../../../../../api/waitforcheckList'
 
 export default {
   name: 'submitting',
@@ -83,27 +83,49 @@ export default {
       })
     },
     Yes () {
-      approve(this.textarea, this.query.id).then(res => {
-        if (res.status) {
-          this.$message({
-            message: '已通过该学生的申请！',
+      this.$confirm('您确认要通过该学生的寒衣补助补助吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        approve(this.textarea, this.query.id).then(res => {
+          if (res.status) {
+            this.$message({
+              message: '已通过该学生的申请！',
               type: 'success'
-          })
-        }
+            })
+          }
+        })
+        this.$router.back(-1)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消操作'
+        })
       })
-      this.$router.push({name: 'apply2'})
     },
-    No (){
+    No () {
       console.info(this.textarea)
-      disapprove(this.textarea, this.query.id).then(res => {
-        if (res.status) {
-          this.$message({
-            message: '已拒绝该学生的申请！\n已告知该生审批结果',
-            type: 'success'
-          })
-        }
+      this.$confirm('此操作将拒绝选中用户的申请且不可撤销, 是否继续?\n(批量审核时暂不支持填写未通过原因)', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        disapprove(this.textarea, this.query.id).then(res => {
+          if (res.status) {
+            this.$message({
+              message: '已拒绝该学生的申请！\n已告知该生审批结果',
+              type: 'success'
+            })
+          }
+        })
+        this.$router.back(-1)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消操作'
+        })
       })
-      this.$router.push({name: 'apply2'})
     }
   }
 }
