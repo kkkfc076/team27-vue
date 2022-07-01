@@ -125,7 +125,7 @@
 </template>
 
 <script>
-import {applyStatistics, cloStatistics,appExport} from '../../../api/api'
+  import {applyStatistics, cloStatistics, appExport, verify} from '../../../api/api'
 import {cloList} from '../../../api/clothes'
 
 export default {
@@ -150,6 +150,33 @@ export default {
       applyStatistics().then(res => {
         console.info(res)
         this.applys = res.data
+      })
+    },
+    exportExcel () {
+      appExport().then(res => {
+        let blob = new Blob([res])
+        let url = window.URL.createObjectURL(blob)
+        let elink = document.createElement('a')
+        elink.download = '汇总表.xls'
+        elink.style.display = 'none'
+        elink.href = url
+        document.body.appendChild(elink)
+        elink.click()
+        document.body.removeChild(elink)
+      })
+    },
+
+    verify () {
+      verify().then(res => {
+        let blob = new Blob([res])
+        let url = window.URL.createObjectURL(blob)
+        let elink = document.createElement('a')
+        elink.download = '审核表.xls'
+        elink.style.display = 'none'
+        elink.href = url
+        document.body.appendChild(elink)
+        elink.click()
+        document.body.removeChild(elink)
       })
     },
     CloSatistics () {
@@ -198,6 +225,7 @@ export default {
         }
       }
     }
+
   }
 }
 </script>
