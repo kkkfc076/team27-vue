@@ -124,7 +124,7 @@
 </template>
 
 <script>
-import {applyStatistics, cloStatistics, appExport, verify,getAllBatch} from '../../../api/api'
+import {applyStatistics, cloStatistics, appExport, verify, getAllBatch} from '../../../api/api'
 import {cloList} from '../../../api/clothes'
 
 export default {
@@ -132,7 +132,7 @@ export default {
   data () {
     return {
       merageArr: [],
-      batch:[],
+      batch: [],
       college: [{
         value: '计算机',
         label: '计算机学院'
@@ -171,9 +171,14 @@ export default {
         this.applys = res.data
       })
     },
-    searchData(){
+    searchData () {
       console.info(this.value1)
       console.info(this.value2)
+      if ( this.value1.length <= 0 || this.value2.length<=0) {
+        this.$message.error('请选择需要查询的批次和学院')
+      } else {
+        this.$router.push({name: 'collegeData', params: {batch: this.value1, college: this.value2}})
+      }
     },
     getallB () {
       getAllBatch().then(res => {

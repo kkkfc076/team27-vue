@@ -22,6 +22,14 @@ const managerPage = [
           )
       },
       {
+        path: '/manager',
+        name: 'collegeData',
+        component: () =>
+          import(
+            '../page/manager/main/collegeData'
+          )
+      },
+      {
         path: '/apply/apply1',
         name: 'apply1',
         component: () =>
