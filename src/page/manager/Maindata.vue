@@ -1,6 +1,6 @@
 <template xmlns:h1="http://www.w3.org/1999/html">
 <el-card>
-  <div style="margin: 20px 0;"></div>
+  <div style="margin: 10px 0;"></div>
   <el-row :gutter="1" align="left">
     <el-col :span="4"><div class="grid-content bg-purple">
   <el-select v-model="value1" multiple placeholder="请选择批次" >
@@ -93,6 +93,7 @@
       </el-col>
     </el-row>
   </el-card>
+  <div style="margin: 20px 0;"></div>
   <div>
     <el-table
       :data="tableData"
