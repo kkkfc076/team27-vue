@@ -168,14 +168,14 @@ export default {
 </script>
 <style>
 .el-header {
-  background-color: #80b2e5;
+  background-color: #2093fd;
   color: #333;
   line-height: 60px;
 }
 .el-main {
   padding: 0;
   background-image:
-    url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01ca5d5e4aa654a8012165181c57e5.jpg%402o.jpg&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659249865&t=7ef77b54d17fb0007c8aac7299a029ae");
+    url("https://t8.baidu.com/it/u=4169654266,3585413596&fm=193");
   height: calc(100vh - 70px);
   width: auto;
 }
