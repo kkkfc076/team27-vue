@@ -56,6 +56,15 @@ const managerPage = [
           )
       },
       {
+        path: '/apply/apply2page/detailedInfo/:id',
+        name: 'detailedInfo',
+        meta: {requireAuth: true},
+        component: () =>
+          import(
+            '../page/manager/main/apply/apply2page/detailedInfo'
+          )
+      },
+      {
         path: '/batchset',
         name: 'batchset',
         component: () =>

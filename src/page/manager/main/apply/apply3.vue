@@ -44,13 +44,12 @@
       </el-table-column>
       <el-table-column
         prop="state"
-        label="审核等级"
+        label="审核详情"
         width="100"
       >
-<!--        <template slot-scope="scope">-->
-<!--          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>-->
-<!--          <el-button type="text" size="small">编辑</el-button>-->
-<!--        </template>-->
+        <template slot-scope="scope">
+          <el-button @click="handleClick(scope.row.id)" type="text" size="small">查看</el-button>
+        </template>
       </el-table-column>
     </el-table>
     <el-pagination
@@ -86,8 +85,9 @@ export default {
     this.aplly()
   },
   methods: {
-    handleClick (row) {
-      console.log(row)
+    handleClick (id) {
+      console.log(id)
+      this.$router.push({name: 'detailedInfo', params: {id: id}})
     },
     aplly () {
       checkedList(this.query).then(res => {

@@ -8,3 +8,4 @@ export const getsAppInfo = (id, query) => http.GET('/api/managerApplication/sApp
 export const tempsaveReson = (reason, id) => http.POST('/api/managerApplication/tempSave/' + id, {reason}, id)
 export const approve = (reason, id) => http.POST('/api/managerApplication/approve/' + id, {reason}, id)
 export const disapprove = (reason, id) => http.POST('/api/managerApplication/disapprove/' + id, {reason}, id)
+export const getCheckedInfo = (id, query) => http.GET('/api/managerApplication/appHisInfo/' + id, {id}, query)
