@@ -27,7 +27,11 @@
      <th scope="row" >申请原因</th>
      <td>
        <span v-if="matchL.flag!==0">
-         <el-input type="text" v-model="reason" placeholder="请输入理由"></el-input>
+         <span v-if="B===0"><el-input type="text" v-model="reason" placeholder="新生可不填写理由"></el-input></span>
+          <span v-else-if="B===2">
+            <el-input type="text" v-model="reason" placeholder="不为新生，理由为空可能无法通过申请">
+            </el-input>
+          </span>
        </span>
        <span v-else-if="matchL.flag===0">
          <el-input type="text" v-model="reason" :placeholder="APList.reason"></el-input>
@@ -47,6 +51,7 @@ export default {
   name: 'Ap',
   data () {
     return {
+      B: '',
       APList: [],
       userList: [],
       matchL: [],
@@ -59,6 +64,7 @@ export default {
     this.getInfo()
     this.match()
     this.getAP()
+    this.getBInfo()
   },
   methods: {
     getAP () {
@@ -119,6 +125,12 @@ export default {
     },
     shuaxin () {
       this.$router.go(0)
+    },
+    getBInfo () {
+      this.$axios.get('api/student/getBInfo').then(res => {
+        console.info(res.data)
+        this.B = res.data.data
+      })
     }
   }
 }
