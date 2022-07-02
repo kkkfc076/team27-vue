@@ -160,6 +160,17 @@ const studentPage = [
       import('../page/student/Student'),
     children: [
       {
+        path: '/hello',
+        name: 'hello',
+        meta: {
+          requireAuth: true
+        },
+        component: () =>
+          import(
+            '../page/student/main/hello'
+          )
+      },
+      {
         path: '/Ap',
         name: 'Ap',
         meta: {

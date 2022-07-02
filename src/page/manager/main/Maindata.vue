@@ -174,7 +174,7 @@ export default {
     searchData () {
       console.info(this.value1)
       console.info(this.value2)
-      if ( this.value1.length <= 0 || this.value2.length<=0) {
+      if (this.value1.length <= 0 || this.value2.length <= 0) {
         this.$message.error('请选择需要查询的批次和学院')
       } else {
         this.$router.push({name: 'collegeData', params: {batch: this.value1, college: this.value2}})

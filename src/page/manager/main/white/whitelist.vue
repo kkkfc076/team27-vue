@@ -6,9 +6,9 @@
       </el-form-item>
       <el-form-item label="管理员等级">
         <el-select v-model="query.mlevel" placeholder="管理员等级">
-          <el-option label="学校" value="1"></el-option>
+          <el-option label="学校" value="3"></el-option>
           <el-option label="学院" value="2"></el-option>
-          <el-option label="辅导员" value="3"></el-option>
+          <el-option label="辅导员" value="1"></el-option>
           <el-option label="全部" value=""></el-option>
         </el-select>
       </el-form-item>
