@@ -122,7 +122,7 @@ export default {
       })
     },
     getCloData () {
-      getSelectedClo(this.query.batch).then(res => {
+      getSelectedClo(this.query.college,this.query.batch).then(res => {
         console.info(res)
         this.styles = res.data
       })

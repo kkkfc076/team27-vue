@@ -9,13 +9,13 @@
     <el-table-column
       fixed
       prop="id"
-      label="id"
-      width="50"
+      label="表单号"
+      width="60"
     >
     </el-table-column>
     <el-table-column
       prop="manKey"
-      label="审核人账户"
+      label="审核人账号"
       width="100"
     >
     </el-table-column>
@@ -27,7 +27,7 @@
     </el-table-column>
     <el-table-column
       prop="reason"
-      label="原因"
+      label="未通过原因(通过请忽略)"
     >
     </el-table-column>
     <el-table-column

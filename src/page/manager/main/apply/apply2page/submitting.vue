@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import {getApperInfo, getsAppInfo, tempsaveReson, approve, disapprove} from '../../../../../api/waitforcheckList'
+import {getApperInfo, getsAppInfo, tempsaveReson, approve, disapprove, getCheckedInfo} from '../../../../../api/waitforcheckList'
 
 export default {
   name: 'submitting',
@@ -54,6 +54,7 @@ export default {
   created () {
     this.stu()
     this.sApp()
+    this.getStored()
   },
   methods: {
     stu () {
@@ -69,6 +70,11 @@ export default {
         if (res.status_code === `200`) {
           console.info('dsadasd')
         }
+      })
+    },
+    getStored () {
+      getCheckedInfo(this.query.id, this.query).then(res => {
+        this.textarea = res.data.reason
       })
     },
     tempSave () {
