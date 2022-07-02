@@ -61,7 +61,9 @@ export default {
       }
       login(student).then(res => {
         if (res.data) {
-          this.$router.push({name: 'Student'})
+          localStorage.setItem('userName',this.formData.id);
+          localStorage.setItem('loginName', this.formData.id)
+          this.$router.push({name: 'hello'})
         } else {
           this.$message.error('用户名或密码错误')
         }
@@ -75,7 +77,9 @@ export default {
       tlogin(manager).then(res => {
         if (res.data) {
           if (res.data.permission) {
+            localStorage.setItem('token', this.formData.id)
             this.$router.push({name: 'Maindata'})
+            localStorage.setItem('userName',this.ruleForm.username);
           } else {
             this.$message.error('用户名或密码错误')
           }

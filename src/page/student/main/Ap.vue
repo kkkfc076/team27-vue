@@ -98,12 +98,12 @@ export default {
       var reason = this.reason
       this.$axios.post(`/api/applicationform/saveReason`, {reason}).then(res => {
         console.info(res.data.data)
-        if (res.data.data.reason !== null) {
-          this.$alert('修改申请理由成功', '修改结果', {
+        if (res.data.data !== false) {
+          this.$alert('申请成功', '修改结果', {
             confirmButtonText: '确定'
           })
         } else {
-          this.$alert('修改申请理由失败', '修改结果', {
+          this.$alert('申请失败,请检查您是否在申请时间段', '申请结果', {
             confirmButtonText: '确定'
           })
         }

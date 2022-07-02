@@ -10,12 +10,18 @@ const managerPage = [
   {
     path: '/maneger',
     name: 'Managemain',
+    meta: {
+      requireAuth: true
+    },
     component: () =>
       import('../page/manager/Managemain'),
     children: [
       {
         path: '/manager',
         name: 'Maindata',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/Maindata'
@@ -32,6 +38,9 @@ const managerPage = [
       {
         path: '/apply/apply1',
         name: 'apply1',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/apply/apply1'
@@ -40,6 +49,9 @@ const managerPage = [
       {
         path: '/apply/apply2',
         name: 'apply2',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/apply/apply2'
@@ -49,7 +61,9 @@ const managerPage = [
       {
         path: '/apply/apply2page/submitting/:id',
         name: 'submitting',
-        meta: {requireAuth: true},
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/apply/apply2page/submitting'
@@ -58,6 +72,9 @@ const managerPage = [
       {
         path: '/apply/apply3',
         name: 'apply3',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/apply/apply3'
@@ -66,7 +83,9 @@ const managerPage = [
       {
         path: '/apply/apply2page/detailedInfo/:id',
         name: 'detailedInfo',
-        meta: {requireAuth: true},
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/apply/apply2page/detailedInfo'
@@ -75,6 +94,9 @@ const managerPage = [
       {
         path: '/batchset',
         name: 'batchset',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/batchset'
@@ -83,6 +105,9 @@ const managerPage = [
       {
         path: '/style/style1',
         name: 'style1',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/style/style1'
@@ -91,6 +116,9 @@ const managerPage = [
       {
         path: '/style/style2',
         name: 'style2',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/style/style2'
@@ -99,6 +127,9 @@ const managerPage = [
       {
         path: '/white/whitelist',
         name: 'whitelist',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/white/whitelist'
@@ -107,6 +138,9 @@ const managerPage = [
       {
         path: '/white/Addstudent',
         name: 'Addstudent',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/manager/main/white/Addstudent'
@@ -119,12 +153,29 @@ const studentPage = [
   {
     path: '/student',
     name: 'Student',
+    meta: {
+      requireAuth: true
+    },
     component: () =>
       import('../page/student/Student'),
     children: [
       {
+        path: '/hello',
+        name: 'hello',
+        meta: {
+          requireAuth: true
+        },
+        component: () =>
+          import(
+            '../page/student/main/hello'
+          )
+      },
+      {
         path: '/Ap',
         name: 'Ap',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/student/main/Ap'
@@ -133,6 +184,9 @@ const studentPage = [
       {
         path: '/ApInfo',
         name: 'ApInfo',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/student/main/ApInfo'
@@ -141,6 +195,9 @@ const studentPage = [
       {
         path: '/Info',
         name: 'Info',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/student/main/Info'
@@ -149,6 +206,9 @@ const studentPage = [
       {
         path: '/Record',
         name: 'Record',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/student/main/Record'
@@ -157,6 +217,9 @@ const studentPage = [
       {
         path: '/Regis',
         name: 'Regis',
+        meta: {
+          requireAuth: true
+        },
         component: () =>
           import(
             '../page/student/main/Regis'

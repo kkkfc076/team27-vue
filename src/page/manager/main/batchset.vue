@@ -6,17 +6,24 @@
         <el-form-item label="批次编号" prop="bid">
           <el-input v-model="batchForm.bid"></el-input>
         </el-form-item>
-        <el-form-item label="开始时间" required>
+        <el-form-item label="批次开始" required>
           <el-col :span="11">
             <el-form-item prop="startdate">
               <el-date-picker type="date" placeholder="选择日期" v-model="batchForm.startdate" style="width: 100%;"></el-date-picker>
             </el-form-item>
           </el-col>
         </el-form-item>
-        <el-form-item label="截止时间" required>
+        <el-form-item label="批次结束" required>
           <el-col :span="11">
             <el-form-item prop="enddate">
               <el-date-picker type="date" placeholder="选择日期" v-model="batchForm.enddate" style="width: 100%;"></el-date-picker>
+            </el-form-item>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="申请截止" required>
+          <el-col :span="11">
+            <el-form-item prop="applyend">
+              <el-date-picker type="date" placeholder="选择日期" v-model="batchForm.applyend" style="width: 100%;"></el-date-picker>
             </el-form-item>
           </el-col>
         </el-form-item>
@@ -49,7 +56,8 @@ export default {
       batchForm: {
         bid: '',
         startdate: '',
-        enddate: ''
+        enddate: '',
+        applyend: ''
       },
       batchList: {},
       rules: {
@@ -61,6 +69,9 @@ export default {
           { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
         ],
         enddate: [
+          { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+        ],
+        applyend: [
           { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
         ]
       }
@@ -74,7 +85,8 @@ export default {
       var bid = this.batchForm.bid
       var startdate = this.batchForm.startdate
       var enddate = this.batchForm.enddate
-      this.$axios.post('/api/batch/addBatch', {bid, startdate, enddate}).then(res => {
+      var applyend = this.batchForm.applyend
+      this.$axios.post('/api/batch/addBatch', {bid, startdate, enddate, applyend}).then(res => {
         console.assert(res.data.data)
         if (res.data.data.flag === 2) {
           alert('创建成功!')

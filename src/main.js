@@ -18,6 +18,28 @@ axios.defaults.withCredentials = true
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+
+
+//登录拦截
+router.beforeEach((to,from,next)=>{
+  if (to.meta.requireAuth) {//requireAuth若为true则该路由需要判断是否登录
+    if (localStorage.userName) {//判断当前的userName数据是否存在
+      next();
+    }
+    else {
+      next({//返回登录页面
+        path: '/',
+        query: {redirect: to.fullPath}
+      })
+    }
+  }
+  else {
+    next();
+  }
+})
+
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

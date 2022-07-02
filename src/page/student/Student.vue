@@ -143,6 +143,7 @@ export default {
       this.$router.push({name: 'ApInfo'})
     },
     exit () {
+      localStorage.removeItem('userName')
       this.$router.push({name: 'Login'})
     },
     onSubmit () {
