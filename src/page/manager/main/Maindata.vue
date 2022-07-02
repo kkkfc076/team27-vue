@@ -3,12 +3,12 @@
   <div style="margin: 10px 0;"></div>
   <el-row :gutter="1" align="left">
     <el-col :span="4"><div class="grid-content bg-purple">
-  <el-select v-model="value1" multiple placeholder="请选择批次" >
+  <el-select v-model="value1"  placeholder="请选择批次" >
     <el-option
-      v-for="item in options"
-      :key="item.value"
+      v-for="item in batch"
+      :key="item.label"
       :label="item.label"
-      :value="item.value">
+      :value="item.label">
     </el-option>
 
   </el-select>
@@ -16,12 +16,11 @@
     <el-col :span="4"><div class="grid-content bg-purple">
   <el-select
     v-model="value2"
-    multiple
     collapse-tags
     style="margin-left: 20px;"
     placeholder="请选择学院">
     <el-option
-      v-for="item in options"
+      v-for="item in college"
       :key="item.value"
       :label="item.label"
       :value="item.value">
@@ -125,7 +124,7 @@
 </template>
 
 <script>
-  import {applyStatistics, cloStatistics, appExport, verify} from '../../../api/api'
+import {applyStatistics, cloStatistics, appExport, verify, getAllBatch} from '../../../api/api'
 import {cloList} from '../../../api/clothes'
 
 export default {
@@ -133,6 +132,25 @@ export default {
   data () {
     return {
       merageArr: [],
+      batch: [],
+      college: [{
+        value: '计算机',
+        label: '计算机学院'
+      }, {
+        value: '外国语',
+        label: '外国语'
+      }, {
+        value: '历史',
+        label: '历史'
+      }, {
+        value: '经济',
+        label: '经济'
+      }, {
+        value: '马哲',
+        label: '马哲'
+      }],
+      value2: [],
+      value1: [],
       meragePos: 0,
       applys: [],
       styles: [],
@@ -140,6 +158,7 @@ export default {
     }
   },
   created () {
+    this.getallB()
     this.ApplyStatistics()
     this.CloSatistics()
     this.getInfo()
@@ -150,6 +169,25 @@ export default {
       applyStatistics().then(res => {
         console.info(res)
         this.applys = res.data
+      })
+    },
+    searchData () {
+      console.info(this.value1)
+      console.info(this.value2)
+      if ( this.value1.length <= 0 || this.value2.length<=0) {
+        this.$message.error('请选择需要查询的批次和学院')
+      } else {
+        this.$router.push({name: 'collegeData', params: {batch: this.value1, college: this.value2}})
+      }
+    },
+    getallB () {
+      getAllBatch().then(res => {
+        let result = res.data
+        result.forEach(element => {
+          this.batch.push({label: element.bid, value: element.id})
+        })
+      }).catch(error => {
+        console.log(error)
       })
     },
     exportExcel () {
