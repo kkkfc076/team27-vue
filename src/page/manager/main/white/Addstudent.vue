@@ -3,6 +3,9 @@
     <el-upload
       class="upload-demo"
       action="/api/manager/importStu"
+      :on-success="(res) => {
+            return uploadSuccess(res);
+         }"
       multiple>
       <el-button size="small" type="primary">点击上传学生名单</el-button>
       <div slot="tip" class="el-upload__tip">只能上传excel文件</div>
@@ -62,6 +65,7 @@ import {getstuList} from '../../../../api/manList'
 
 export default {
   name: 'Addstudent',
+  inject: ['reload'],
   data () {
     return {
       students: [],
@@ -78,6 +82,10 @@ export default {
     this.getstu()
   },
   methods: {
+    uploadSuccess (res) {
+      console.log(res) // 上传接口返回结果
+      this.reload()
+    },
     getstu () {
       getstuList(this.query).then(res => {
         console.info(res)

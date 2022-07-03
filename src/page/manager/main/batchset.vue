@@ -50,7 +50,7 @@ import ProlongEnddate from './component/prolongEnddate'
 import {getCurBatch} from '../../../api/api'
 export default {
   name: 'batchset',
-  inject:['reload'],
+  inject: ['reload'],
   components: {ProlongEnddate},
   data () {
     return {
@@ -90,7 +90,9 @@ export default {
       this.$axios.post('/api/batch/addBatch', {bid, startdate, enddate, applyend}).then(res => {
         console.assert(res.data.data)
         if (res.data.data.flag === 2) {
-          alert('创建成功!')
+          alert('创建成功!').then(() => {
+            this.reload()
+          })
           this.$router.push({name: 'Maindata'})
         } else {
           alert(' 错误！')

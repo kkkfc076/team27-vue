@@ -20,8 +20,11 @@
     <el-upload
       class="upload-demo"
       action="/api/manager/importMan"
+      :on-success="(res) => {
+            return uploadSuccess(res);
+         }"
       multiple>
-      <el-button size="small" type="primary">点击上传管理员名单</el-button>
+      <el-button size="small" type="primary" >点击上传管理员名单</el-button>
       <div slot="tip" class="el-upload__tip">只能上传excel文件</div>
     </el-upload>
     <el-table
@@ -75,7 +78,7 @@ import {manList, setPermissions} from '../../../../api/manList'
 
 export default {
   name: 'whitelist',
-  inject:['reload'],
+  inject: ['reload'],
   data () {
     return {
       ids: [],
@@ -93,6 +96,10 @@ export default {
     this.manList()
   },
   methods: {
+    uploadSuccess (res) {
+      console.log(res) // 上传接口返回结果
+      this.reload()
+    },
     manList () {
       manList(this.query).then(res => {
         console.info(res)
@@ -127,8 +134,6 @@ export default {
           this.$message({
             message: '授权成功',
             type: 'success'
-          }).then(() =>{
-            this.reload()
           })
         }
         this.manList()
