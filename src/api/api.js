@@ -15,4 +15,5 @@ export const cloStatistics = () => http.GET('/api/clothes/cloStatistics')
 export const getAllBatch = () => http.GET('/api/manager/getAllBatch')
 export const getSelectedData = (str, batch) => http.GET('/api/manager/getselecteddata', {str, batch})
 // 条件查询当前批次的总款式
-export const getSelectedClo = (batch) => http.GET('/api/manager/getClo', { batch})
+export const getSelectedClo = (str,batch) => http.GET('/api/manager/getClo', { str,batch})
+export const getSelectedCloInfo = (str,batch) => http.GET('/api/manager/getSelectedCol', { str,batch})

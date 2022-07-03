@@ -1,5 +1,11 @@
 <template>
   <el-card>
+    <el-row :gutter="1" align="left"  >
+      <div align="left">查询学院：{{query.college}}       查询批次：{{query.batch}}
+<!--      <div align="right">-->
+    <el-button type="primary" @click="back">返回</el-button>
+      </div>
+    </el-row>
   <h1 align="left" style="font-size: medium">申请统计</h1>
   <el-card body-style="padding: 15px">
     <el-row :gutter="0">
@@ -87,13 +93,12 @@
 </template>
 
 <script>
-import {getSelectedData, getSelectedClo} from '../../../api/api'
+import {getSelectedData, getSelectedClo, getSelectedCloInfo} from '../../../api/api'
 export default {
 
   name: 'collegeData',
   data () {
     return {
-      meragePos: 0,
       applys: [],
       styles: [],
       info: [],
@@ -107,6 +112,7 @@ export default {
   created () {
     this.getSumData()
     this.getCloData()
+    this.getColInfo()
   },
   methods: {
     getSumData () {
@@ -116,10 +122,19 @@ export default {
       })
     },
     getCloData () {
-      getSelectedClo(this.query.batch).then(res => {
+      getSelectedClo(this.query.college,this.query.batch).then(res => {
         console.info(res)
         this.styles = res.data
       })
+    },
+    getColInfo () {
+      getSelectedCloInfo(this.query.college, this.query.batch).then(res => {
+        console.info(res)
+        this.info = res.data
+      })
+    },
+    back () {
+      this.$router.go(-1)
     }
   }
 }
