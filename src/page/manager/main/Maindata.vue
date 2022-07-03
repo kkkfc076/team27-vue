@@ -1,4 +1,4 @@
-<template xmlns:h1="http://www.w3.org/1999/html">
+<template>
 <el-card>
   <div style="margin: 10px 0;"></div>
   <el-row :gutter="1" align="left">

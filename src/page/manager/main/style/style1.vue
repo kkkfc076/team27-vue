@@ -1,7 +1,5 @@
 <template>
   <div>
-<!--    <el-card class="crumbs-card">-->
-<!--    </el-card>-->
     <el-card class="container">
       <el-form :inline="true" class="demo-form-inline">
         <el-form-item label="款式编号">
@@ -86,6 +84,7 @@ import {cloList, deleteClothes} from '../../../../api/clothes'
 import ClothesEdit from '../component/dialog'
 export default {
   name: 'style1',
+  inject: ['reload'],
   components: {
     ClothesEdit
   },
@@ -121,7 +120,9 @@ export default {
       this.getInfo()
     },
     handleEdit (clothes) {
-      this.$refs.cloEdit.show(clothes)
+      this.$refs.cloEdit.show(clothes).then(() =>{
+        this.reload()
+      })
     },
     handleDelete (row) {
       deleteClothes(row).then(res => {
@@ -130,6 +131,8 @@ export default {
           this.$message({
             message: '删除成功',
             type: 'success'
+          }).then(() =>{
+            this.reload()
           })
         }
         this.getInfo()

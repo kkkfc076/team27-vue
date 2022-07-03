@@ -78,6 +78,7 @@ import {waitForList, batchApproveApp, batchDisApproveApp} from '../../../../api/
 export default {
 
   name: 'apply1',
+  inject: ['reload'],
   data () {
     return {
       ids: [], // 审核通过或未通过的id集
@@ -100,7 +101,6 @@ export default {
         ids.push(selectedNo[i].id)
       }
       this.ids = ids
-      // this.ids = selectedNo.map(manager_application => manager_application.id)
     },
     aplly () {
       waitForList(this.query).then(res => {
@@ -121,6 +121,8 @@ export default {
             this.$message({
               message: '批量操作成功！已通过选中学生的申请',
               type: 'success'
+            }).then(() => {
+              this.reload()
             })
             this.apply()
           }

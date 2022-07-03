@@ -35,6 +35,7 @@ import {prolongBatch} from "../../../../api/api"
 
 export default {
   name: "prolongEnddate",
+  inject: ['reload'],
   data() {
     return {
       dialogVisible: false,
@@ -65,8 +66,10 @@ export default {
           this.$message({
             message: '编辑成功',
             type: 'success'
+          }).then(() => {
+            this.dialogVisible=false
+            this.reload()
           })
-          this.dialogVisible=false
         }else{
           this.$message.error("编辑失败")
         }

@@ -75,6 +75,7 @@ import {manList, setPermissions} from '../../../../api/manList'
 
 export default {
   name: 'whitelist',
+  inject:['reload'],
   data () {
     return {
       ids: [],
@@ -126,6 +127,8 @@ export default {
           this.$message({
             message: '授权成功',
             type: 'success'
+          }).then(() =>{
+            this.reload()
           })
         }
         this.manList()

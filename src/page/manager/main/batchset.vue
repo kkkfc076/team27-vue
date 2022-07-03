@@ -50,6 +50,7 @@ import ProlongEnddate from './component/prolongEnddate'
 import {getCurBatch} from '../../../api/api'
 export default {
   name: 'batchset',
+  inject:['reload'],
   components: {ProlongEnddate},
   data () {
     return {
