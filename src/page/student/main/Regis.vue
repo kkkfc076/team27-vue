@@ -30,6 +30,7 @@
         </el-table-column>
       </el-table>
       <!-- 底部换页 -->
+      <br/>
       <el-pagination
         background
         @size-change="pageSizeChange"
@@ -41,7 +42,7 @@
         :total="query.total">
       </el-pagination>
     </el-card>
-
+    <br/>
     <el-button type="primary" @click="getSize">查看尺码</el-button>
     <!-- 尺码表弹窗-->
     <el-dialog title="尺码推荐表" :visible.sync="dialogTableVisible">

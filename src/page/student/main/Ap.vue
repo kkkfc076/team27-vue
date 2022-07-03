@@ -29,7 +29,7 @@
        <span v-if="matchL.flag!==0">
          <span v-if="B===0"><el-input type="text" v-model="reason" placeholder="新生可不填写理由"></el-input></span>
           <span v-else-if="B===2">
-            <el-input type="text" v-model="reason" placeholder="不为新生，理由为空可能无法通过申请">
+            <el-input type="text" v-model="reason"  placeholder="不为新生，理由为空可能无法通过申请">
             </el-input>
           </span>
        </span>
@@ -52,9 +52,9 @@ export default {
   data () {
     return {
       B: '',
-      APList: [],
-      userList: [],
-      matchL: [],
+      APList: '',
+      userList: '',
+      matchL: '',
       reason: '',
       addFlag: true,
       updateFlag: true
@@ -63,7 +63,6 @@ export default {
   created () {
     this.getInfo()
     this.match()
-    this.getAP()
     this.getBInfo()
   },
   methods: {
@@ -80,34 +79,48 @@ export default {
       })
     },
     updateReason () {
-      var reason = this.reason
-      this.$axios.post(`/api/applicationform/updateReason`, {reason}).then(res => {
-        console.info(res.data.data)
-        if (res.data.data.flag === 2) {
-          this.$alert('修改申请理由成功', '修改结果', {
-            confirmButtonText: '确定'
-          })
-        } else {
-          this.$alert('修改申请理由失败', '修改结果', {
-            confirmButtonText: '确定'
-          })
-        }
-      })
+
+      if(this.B ===2 && this.reason === ''){
+        this.$alert('申请理由不能为空', '修改结果', {
+          confirmButtonText: '确定'
+        })
+      }else {
+        var reason = this.reason
+        this.$axios.post(`/api/applicationform/updateReason`, {reason}).then(res => {
+          console.info(res.data.data)
+          if (res.data.data.flag === 2) {
+            this.$alert('修改申请理由成功', '修改结果', {
+              confirmButtonText: '确定'
+            })
+          } else {
+            this.$alert('修改申请理由失败', '修改结果', {
+              confirmButtonText: '确定'
+            })
+          }
+        })
+      }
     },
     addReason () {
-      var reason = this.reason
-      this.$axios.post(`/api/applicationform/saveReason`, {reason}).then(res => {
-        console.info(res.data.data)
-        if (res.data.data !== false) {
-          this.$alert('申请成功', '修改结果', {
-            confirmButtonText: '确定'
-          })
-        } else {
-          this.$alert('申请失败,请检查您是否在申请时间段', '申请结果', {
-            confirmButtonText: '确定'
-          })
-        }
-      })
+
+      if(this.B === 2 && this.reason === ''){
+        this.$alert('申请理由不能为空', '修改结果', {
+          confirmButtonText: '确定'
+        })
+      }else {
+        var reason = this.reason
+        this.$axios.post(`/api/applicationform/saveReason`, {reason}).then(res => {
+          console.info(res.data.data)
+          if (res.data.data !== false) {
+            this.$alert('申请成功', '修改结果', {
+              confirmButtonText: '确定'
+            })
+          } else {
+            this.$alert('申请失败,请检查您是否在申请时间段', '申请结果', {
+              confirmButtonText: '确定'
+            })
+          }
+        })
+      }
     },
     match () {
       this.$axios.get(`/api/applicationform/match`).then(res => {
@@ -121,6 +134,7 @@ export default {
           this.addFlag = false
           this.updateFlag = true
         }
+        this.getAP()
       })
     },
     shuaxin () {

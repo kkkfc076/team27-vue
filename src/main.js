@@ -18,8 +18,6 @@ axios.defaults.withCredentials = true
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
-
-
 //登录拦截
 router.beforeEach((to,from,next)=>{
   if (to.meta.requireAuth) {//requireAuth若为true则该路由需要判断是否登录
@@ -37,8 +35,6 @@ router.beforeEach((to,from,next)=>{
     next();
   }
 })
-
-
 
 /* eslint-disable no-new */
 new Vue({

@@ -134,6 +134,7 @@ export default {
       this.$router.push({name: 'Addstudent'})
     },
     back () {
+      localStorage.removeItem('userName')
       this.$router.push({name: 'Login'})
     },
     handleEdit () {

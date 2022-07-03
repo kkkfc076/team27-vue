@@ -77,9 +77,8 @@ export default {
       tlogin(manager).then(res => {
         if (res.data) {
           if (res.data.permission) {
-            localStorage.setItem('token', this.formData.id)
+            localStorage.setItem('userName',this.formData.id);
             this.$router.push({name: 'Maindata'})
-            localStorage.setItem('userName',this.ruleForm.username);
           } else {
             this.$message.error('用户名或密码错误')
           }

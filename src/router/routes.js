@@ -171,7 +171,7 @@ const studentPage = [
           )
       },
       {
-        path: '/Ap',
+        path: '/student/Ap',
         name: 'Ap',
         meta: {
           requireAuth: true
@@ -182,7 +182,7 @@ const studentPage = [
           )
       },
       {
-        path: '/ApInfo',
+        path: '/student/ApInfo',
         name: 'ApInfo',
         meta: {
           requireAuth: true
@@ -193,7 +193,7 @@ const studentPage = [
           )
       },
       {
-        path: '/Info',
+        path: '/student/Info',
         name: 'Info',
         meta: {
           requireAuth: true
@@ -204,7 +204,7 @@ const studentPage = [
           )
       },
       {
-        path: '/Record',
+        path: '/student/Record',
         name: 'Record',
         meta: {
           requireAuth: true
@@ -215,7 +215,7 @@ const studentPage = [
           )
       },
       {
-        path: '/Regis',
+        path: '/student/Regis',
         name: 'Regis',
         meta: {
           requireAuth: true
